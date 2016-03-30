@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+
+window.onload=function(){
+
+   $.get('http://172.29.59.63:3000/project', {}, function(results){
+	 	
+	        //alert(results);
+	        var p_name = results.split(',');
+	        //alert(p_name);	
+			var testDdp = $('#project');
+			
+			for (var i = 0; i < p_name.length; i++) {
+			   var option = $("<option/>");
+			   option.attr("value", p_name[i]).text(p_name[i]);
+			   testDdp.append(option);
+			}
+		    
+       
+   });
+}
+
+
+function cloud(){
+document.getElementById("createbtn").disabled = true;
+var name = document.getElementById("cloud_name").value;
+var location = document.getElementById("location").value;
+var project = document.getElementById("project").value;
+//alert(project);
+var data = {};
+data.name = name;
+data.location = location;
+data.project = project;
+      $.ajax({
+     type: 'POST',
+	 jsonpCallback: "callback",
+     datatype: 'jsonp',
+     data: data,
+	 //contentType: 'application/json',
+     url: 'http://172.29.59.63:3000/create_cloud_service',
+     success: function(data, textStatus) {
+     //alert('success');
+	   //if(!alert('Details updated succesfully!')){window.close();}
+	   if(data == "Success")
+	   {
+	   alert("Cloud Service Created");
+	   window.close();
+	   }
+	   else
+	   {
+	   alert(data);
+	   window.location.reload();
+	   }
+     },
+	 error: function (xhr, status, error){
+        console.log('Failure');
+		if(!alert('Failure!')){window.location.reload();}
+		},
+   });
+}
+</script>
+</head>
+<body>
+Name <input type="text" id="cloud_name"></input><br/><br/>
+Location
+<select id="location">
+  
+  <option value="East US">East US</option>
+  <option value="South Central US">South Central US</option>
+  <option value="West US">West US</option>
+  <option value="Central US">Central US</option>
+  <option value="North Central US">North Central US</option>
+  <option value="East US 2">East US 2</option>
+  <option value="North Europe">North Europe</option>
+  <option value="West Europe">West Europe</option>
+  <option value="Southeast Asia">Southeast Asia</option>
+  <option value="East Asia">East Asia</option>
+  <option value="Japan West">Japan West</option>
+  <option value="Japan East">Japan East</option> 
+  <option value="Brazil South">Brazil South</option>
+  <option value="Central India">Central India</option>
+  <option value="South India">South India</option>
+</select><br/><br/>
+Project Name: <select id="project" name="project"></select><br/><br/>
+<button type="button" onClick="cloud()" id="createbtn">Create</button>
+</body> 
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="next_style.css">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="manage.js"></script> 
+<style type="text/css">
+    div.formLayout
+    {
+		margin-top:10px;
+        @background-color: #f3f3f3;
+        @border: solid 1px #a1a1a1;
+        @padding: 10px;
+        width: 700px;
+    }	
+	.button 
+	{
+		padding:5px;
+		color: #fff;
+		background-color: #F00000;
+		font-weight: bold;
+		font-size: 100%;
+		width:100px;
+	}
+	div.form1{
+		overflow:auto;
+	}
+	.radio {
+  background: url(radio.jpg) no-repeat;
+}
+	
+</style>
+<script type="text/javascript">
+var id1;
+function test(el) {
+    id1 = $(el).closest("tr").find('td:eq(1)').text();
+	
+ //alert(id1+id2+id3+id4+id5);
+ //location.href='proj_det.html?prov_id='+id1+"&vcpu="+id2+"&mem="+id3+"&store="+id4+"&cpu="+id5;
+    //alert(id);
+}
+
+function myfun(el)
+{
+//var id = el.id();
+//alert(el);
+//alert(id1);
+location.href = 'http://127.0.0.1:8086/?status='+el+"&id="+id1;
+
+}
+</script>
+
+</head>
+<body>
+<header>
+<img src="logo.png" height="140px" width="140px"/>	
+</header>
+
+<div id="header_content">
+<font color="#FFFFFF">Provisioning</font>
+</div>
+<div class="content">
+
+	<div id="left_part">
+	<ul><font size="5">
+		<li><a href="next_page.html">AWS</a></li>
+		<li><a href="">Azure</a></li>
+		<li><a href="">OpenStack</a></li>
+		<li><a href="">HP Helion</a></li>
+		<li><a href="">SoftLayer</a></li></font>
+	</ul>
+	</div>	
+
+	
+</div>
+<div class="form2" align="center" >
+
+ <div class="formLayout"> 
+ <div class="heading">
+ <h3>Instance Management</h3>
+ </div>
+ <table border="1" class="new_table">
+		<tr>
+			<th>Provider Id</th>
+			<th>Instance Id</th>	
+			<th>Date</th>
+			<th>Project Id</th>
+			<th>Project Name</th>
+			<th>Status</th>
+			<th>Select</th> 
+		</tr>
+</table>
+</br>
+
+<input class="button" type="button" name="Reboot" id="reboot" value="Reboot" onClick="myfun(this.id)"
+</input>
+<input class="button" type="button" name="Stop" id="stop" value="Stop" onClick="myfun(this.id)"></input>
+<input class="button" type="button" name="Terminate" id="terminate" value="Terminate" onClick="myfun(this.id)"></input>
+<input class="button" type="button" name="Start" id="start" value="Start" onClick="myfun(this.id)"></input>
+		
+</div>
+
+</div>
+
+
+<footer>
+
+<font color="#FFFFFF">Follow us:</font>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+<link rel="stylesheet" type="text/css" href="/css/tmplt_create.css">
+<link rel="stylesheet" type="text/css" href="/stylesheets/manage_env.css">
+<link rel="stylesheet" type="text/css" href="/stylesheets/create_template2.css">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="/js/project.js"></script>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/base/jquery-ui.css"/>
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<style>
+.button{
+		margin-top: 600px;
+		margin-left: 300px;
+		}
+select{
+		width:173px; 
+		height: 25px;
+}
+input.pname{
+	width: 173px;
+	height: 25px;
+}
+div.project1{	
+	font-size:120%;
+	line-height: 20px;
+	text-align: center;
+	color: black;
+	width: 130px;
+	height: 130px;
+	float: left;
+	margin: 10px;
+	border: 2px solid #87CEFA;
+	margin-top: 10px;
+	cursor :pointer;
+	border-radius: 25px;
+}
+</style>
+</head>
+<body>
+<header>
+<img src="/stylesheets/logo.png" height="71px" width="372px"/>	
+</header>
+
+<div id="header_content1">
+
+<div id="menu" class="menu">
+<form id="menus" class="menus">
+		<div id="nav">
+		<ul>
+		<li><a href="#">Node</a>
+		<ul>			
+			<li><a href="http://172.29.59.63:3000">Create</a></li>			
+			<li><a href="#">Deploy</a></li>		
+			<li><a href="#">Manage</a></li>		
+		</ul>
+		</li>		
+		<li><a href="#">Template</a>
+		<ul>
+			<li><a href="#">View</a></li>
+			<li><a href="http://172.29.59.65:3000/new_template" id="create">Create</a></li>			
+			<li><a href="172.29.59.61:3000/deploy">Deploy</a></li>		
+			<li><a href="172.29.59.61:3000/manage_env">Manage</a></li>		
+		</ul>
+		</li>
+		<li><a href="#">Project</a>
+		<ul>
+			<li><a href="#">Create</a></li>
+			<li><a href="#">view</a></li>						
+		</ul>
+		</li>
+		<li><a href="#">Blueprint</a>
+		<ul>
+			<li><a href="#">Create</a></li>
+			<li><a href="#">view</a></li>
+			<li><a href="#">Deploy</a></li>			
+		</ul>
+		</li>
+		<li><a href="#">About</a>
+		<ul>
+			<li><a href="#">News</a></li>
+			<li><a href="#">Contact</a></li>			
+		</ul>
+		</li>		
+		</ul>
+		</div>
+	</form>
+</div>
+</div>
+<div class="formLayout">
+<div class="extreme_left">
+
+</div>
+<div class="center">
+
+	<div class="center_right">	
+		<p>View Projects</p>
+		<hr></hr>
+		<div class="project1">
+			<div class="project_name">
+				<div class="project_image">
+					<img src="/images/rezopia.jpg" height="80" width="100"/>
+				</div>
+				<hr></hr>
+				<div onclick="view_project(this.innerHTML)">Rezopia</div>
+			</div>
+		</div>
+		<div class="project1">
+			<div class="project_name">
+				<div class="project_image">
+					<img src="/images/vmware.png"/>
+				</div>
+				<hr></hr>
+				<div onclick="view_project(this.innerHTML)">Rapid</div>
+			</div>
+		</div>		
+	</div>
+
+	<div class="center_left">
+		<div class="proj_desc">
+			<p>Project Description</p>
+		</div>
+	</div>
+
+</div>
+</div>	
+<footer>
+<font color="#FFFFFF">Follow us:</font>
+</footer>
+
+</body>
+</html>

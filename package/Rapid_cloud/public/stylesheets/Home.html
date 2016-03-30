@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet" type="text/css" href="style1.css">
+<script>
+function myFunctionId (id) {
+   //alert(id);      
+    window.location.href='next_page.html#prov_id='+id;
+}
+</script>
+</head>
+
+<body>
+
+<header>
+<img src="logo.png" height="140px" width="140px"/>
+</header>          
+
+
+<div id="header_content" class="header">
+<font color="#FFFFFF">Provisioning</font>
+</div>
+
+
+<div class="content" id="cen">
+<!--<form action="http://127.0.0.1:8081/myaction" method="post">-->
+                <div onClick="myFunctionId(this.id)" class="img1" id="aws" name="aws" >
+                                <img class="allimg" src="img.png" id="aws">
+                                </img>
+                                <p class="para">Amazon Web Services</p>
+                </div>
+
+<div class="img1" id="azure" onClick="myFunctionId(this.id)"><img class="allimg" src="microsoft.png" id="mz"></img><p class="para">Microsoft Azure</p></div>
+<div class="img1" id="hp" onClick="myFunctionId(this.id)"><img class="allimg" src="hp.jpg" id="hp"></img><p class="para">Hp Helion</p></div>
+<div class="img1" id="op" onClick="myFunctionId(this.id)"><img class="allimg" src="open.jpg" id="op"></img><p class="para">Open Stack</p></div>
+<div class="img1" id="sl" onClick="myFunctionId(this.id)"><img class="allimg" src="softlayer.png" id="sl"></img><p class="para">Softlayer</p></div>
+<!--</form>-->
+
+</div>
+
+<footer>
+<font color="#FFFFFF">Follow us:</font>
+</footer>
+
+</body>
+</html>

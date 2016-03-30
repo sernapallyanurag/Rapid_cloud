@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+<link rel="stylesheet" type="text/css" href="/css/tmplt_create.css">
+<link rel="stylesheet" type="text/css" href="/stylesheets/manage_env.css">
+<link rel="stylesheet" type="text/css" href="/stylesheets/create_template2.css">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="/js/project.js"></script>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/base/jquery-ui.css"/>
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<style>
+.button{
+		margin-top: 600px;
+		margin-left: 300px;
+		}
+select{
+		width:173px; 
+		height: 25px;
+}
+input.pname{
+	width: 173px;
+	height: 25px;
+}
+</style>
+</head>
+<body>
+<header>
+<img src="/stylesheets/logo.png" height="71px" width="372px"/>	
+</header>
+
+<div id="header_content1">
+
+<div id="menu" class="menu">
+<form id="menus" class="menus">
+		<div id="nav">
+		<ul>
+		<li><a href="#">Node</a>
+		<ul>			
+			<li><a href="http://172.29.59.63:3000">Create</a></li>			
+			<li><a href="#">Deploy</a></li>		
+			<li><a href="#">Manage</a></li>		
+		</ul>
+		</li>		
+		<li><a href="#">Template</a>
+		<ul>
+			<li><a href="#">View</a></li>
+			<li><a href="http://172.29.59.65:3000/new_template" id="create">Create</a></li>			
+			<li><a href="172.29.59.61:3000/deploy">Deploy</a></li>		
+			<li><a href="172.29.59.61:3000/manage_env">Manage</a></li>		
+		</ul>
+		</li>
+		<li><a href="#">Project</a>
+		<ul>
+			<li><a href="#">Create</a></li>
+			<li><a href="#">view</a></li>						
+		</ul>
+		</li>
+		<li><a href="#">Blueprint</a>
+		<ul>
+			<li><a href="#">Create</a></li>
+			<li><a href="#">view</a></li>
+			<li><a href="#">Deploy</a></li>			
+		</ul>
+		</li>
+		<li><a href="#">About</a>
+		<ul>
+			<li><a href="#">News</a></li>
+			<li><a href="#">Contact</a></li>			
+		</ul>
+		</li>		
+		</ul>
+		</div>
+	</form>
+</div>
+</div>
+<div class="formLayout">
+<div class="extreme_left">
+
+</div>
+<div class="center">
+
+	<div class="center_right">	
+		<h2>Create Project</h2>
+			<form name="form">
+				<table class="proj_details" cellpadding="10">
+					<tr align="left">
+						<th>Project Name</th>
+						<td><input type="text" class="pname" autofocus></td>
+					</tr>
+					<tr align="left">
+						<th>Choose Image</th>
+						<td><input type="file" class="pname" accept="image/*"/></td>				
+					</tr>
+					<tr align="left">
+						<th>Start Date</th>
+						<td><input type="date" class="pname" /></td>
+					</tr>
+					<tr align="left">
+						<th>Manager</th>
+						<td><input type="text" class="pname"/></td>
+						<td><input type="button" value="Add"/></td>
+					</tr>
+					<tr align="left">
+						<th>Add Team/User</th>
+						<td><input type="text" class="pname"/></td>
+						<td><input type="button" value="Add"/></td>
+					</tr>
+					<tr align="left">
+						<th>Status</th>
+						<td><select id="proj_det">
+							<option>None</option>
+							<option>Active</option></select></td>
+					</tr>
+					<tr align="left">
+						<th>Technologies</th>
+						<td><input type="text" class="pname"/></td>				
+					</tr>
+					<tr align="left">
+						<th></th>
+						<td><input type="button" value="Create" onclick="project_function()"/></td>				
+					</tr>
+				</table>
+			</form>			
+	</div>
+</div>
+</div>	
+<footer>
+<font color="#FFFFFF">Follow us:</font>
+</footer>
+
+</body>
+</html>

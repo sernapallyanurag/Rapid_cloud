@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<script src="/js/view-temp.js"></script>
+
+<title>Rapid Cloud</title>
+<script>
+if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+    var msViewportStyle = document.createElement("style");
+    msViewportStyle.appendChild(
+        document.createTextNode(
+            "@-ms-viewport{width:auto!important}"
+        )
+    );
+    document.getElementsByTagName("head")[0].
+        appendChild(msViewportStyle);
+}
+
+
+</script>
+<link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+<link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css">
+<link rel="stylesheet" href="css/demo.css" type="text/css">
+ <link rel="stylesheet" href="css/style_120.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="css/demo_on_start.css" />
+<link rel="stylesheet" href="css/style.css" />
+<script src="http://code.jquery.com/jquery-latest.js" type="text/javascript"></script>
+<script>
+jQuery(document).ready(function() {	 
+	$('div.content').hide();
+});	
+
+function show_temp_div(){
+	$('div.content').show();
+}
+
+function show_all_template(){
+	
+		$.getJSON( "http://172.29.59.65:3000/my_view", function( data ) {	
+			my_template = data;
+			var div1=$('div.portfolioContainer');					
+			for(var i=0;i<data.length;i++)
+				{					
+					var div_1 = $('<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 objects  people"></div>');
+					//div_1.attr("id", data[i].Template_name).text(data[i].Template_name);
+					div_1.appendTo(div1);					
+				}
+				var div2=$('div.col-xs-12 col-sm-6 col-md-4 col-lg-3 objects  people');	
+				for(var j=0;j<data.length;j++)
+				{					
+					var div_2 = $('<div class="flex_container"></div>');
+					div_2.attr("id", data[j].Template_name).text(data[j].Template_name);					
+					div_2.appendTo(div2);					
+				}
+		 });
+}
+window.onload=show_all_template();
+function init() {		
+        window.addEventListener('scroll', function(e){
+            var distanceY = window.pageYOffset || document.documentElement.scrollTop,
+                shrinkOn = 300,
+                header = document.querySelector("header");
+            if (distanceY > shrinkOn) {
+                classie.add(header,"none");
+            } else {
+                if (classie.has(header,"none")) {
+                    classie.remove(header,"none");
+                }
+            }
+        });
+    }
+    window.onload = init();
+</script>
+</head>
+<script>
+			$(function () {
+				$('#jprt-ind').jportilio({ratio: 1});
+			});
+		</script>
+<body class='index'>
+<div class="page-container">
+<div class="analytics_container">
+<header>
+<nav class="navbar navbar-inverse navbar-nav-class" role="navigation">
+<div class="container-fluid">
+<div class="header">
+<div class="header-logo">
+<div class="logo-dashboard">
+<a href="#"><img src="images/logo.png"></a>
+
+</div>
+<div class="color-system  color-system-dashboard"><h1>Manage, Govern and Optimize Your cloud Environments </h1>
+
+</div>
+</div><!--header-logo-->
+
+<div class="header-right">
+<div class="dropdowns">
+<div class="dropdown">
+
+  </div><!--dropdown-->
+
+<span class="searchbar_template1">
+<div class="custom-search-input" >
+                <div class="input-group col-md-12">
+                    <input type="text" class="form-control input-lg" style="height:40px;margin-right:-7px;color: #525252;font-size: 14px;" placeholder="Search ..." />
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="button">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+</span>
+
+
+<div class="dropdowns-left">
+ <div class="dropdown">
+  </div><!--dropdown-->
+ <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"><img src="images/settings-icon.png"></button>
+   <!--  <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">HTML</a></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
+      <li role="presentation" class="divider"></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
+    </ul> -->
+  </div><!--dropdown-->
+  
+   <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"><img src="images/question-icon.png"></button>
+    <!-- <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">HTML</a></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
+      <li role="presentation" class="divider"></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
+    </ul> -->
+  </div><!--dropdown-->
+ </div><!--dropdown-left--> 
+ 
+<div class="dropdowns-right">
+<div class="left">
+
+              <a href="#" data-toggle="dropdown" style="color:#777; margin-top: 5px;" class="dropdown-toggle"><img src="images/logout-image.jpg"><span>Mike Willis<b class="caret"></b></span></a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="#" title="Profile">Profile</a>
+                </li>
+                <li>
+                  <a href="#" title="Logout">Logout </a>
+                </li>
+              </ul>
+            </div>
+            
+</div><!--dropdown-right--> 
+
+
+
+</div><!--dropdowns-->
+</div><!--header-right-->
+</div><!--header-->
+</div><!--container-fluid--> 
+</nav>
+</header><!--header-->
+ <a href="#" class="sidebar-icon"> <img src="images/toggle1.png"> </a>
+ <div id="left-nav">
+  <div class="sidebar-menu-main">
+  <div class="sidebar-menu">
+   
+
+	
+	
+    <div class="menu">
+      <ul id="menu">
+      <li></li>
+        <li id="menu-home"><a href="#"><img src="images/dashboard.png"><span style="position: relative;">Home</span></a></li>
+        <li class="active"><a href="#"><img src="images/design.png"><span>Design</span></a>
+          <ul>
+            <li><a onclick="show_temp_div()" href="#">Templates</a></li>
+            <li><a href="#">Node</a></li>
+            <li><a href="#">Blueprints</a></li>
+            <li><a href="#">Networks</a></li>
+            <li><a href="#">Lood Balancing</a></li>
+          </ul>
+        </li>
+        <li id="menu-comunicacao" ><a href="#"><img src="images/deploy.png"><span>Deploy</span></a>
+        </li>
+        <li><a href="#"><img src="images/manage.png"><span>Manage</span></a>
+        </li>
+        <li><a href="#"><img src="images/monitor.png"><span>Monitor</span></a></li>
+		<li><a href="#"><img src="images/analytics-menuicon-4.png"><span>Projects</span></a></li>
+      </ul>
+    </div>
+	
+	
+  </div>
+  </div>
+  </div><!--sidebar-main--> 
+  
+<div class="content" id="content">
+
+
+<div class="content_descrption">
+<div class="portfolioFilter" >
+<div class="col-xs-12 col-sm-12 col-md-3  col-lg-2 pr-0 pl-0">
+<span class="heading1  ">View Templates</span>
+</div>
+<div class="col-xs-12 col-sm-12 col-md-4  col-lg-6 activ-links">
+	<span class="txtt_all"> <a href="#" data-filter="*" class="current">All</a> </span>
+	<span class="txt_all">
+	<a href="#" data-filter=".people">My Templates</a></span>
+	<span class="txt_all">
+	<a href="#" data-filter=".places">Generic Templates</a></span>
+	<span class="txt_all"><a href="#" data-filter=".food">System Template</a></span>
+
+</div>
+<div class="col-xs-12 col-sm-12 col-md-5 col-lg-4 search-0">
+  <span class="createnew_button"> <button class="btn btn-default dropdown-toggle new_button"> Create a new Template</button> </span>
+
+<span class="searchbar_template">
+<div class="custom-search-input" style="height:35px;margin-right:-20px;">
+                <div class="input-group col-md-12">
+                    <input type="text" class="form-control input-lg" placeholder="Search...." style="height: 100px;color: #525252;font-size: 14px;">
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="button">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+</span>
+
+  </div>
+</div>
+</div>
+<div class="portfolioContainer" style="width: 100%;">
+	<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 objects  people">
+
+
+		<div class="flex_container">
+	      <div class="brand_logo">
+	        <img class="logo_image" src="images/amazon.png"></img>
+	      </div>
+	      <div class="brand_name">
+	        Rad_prod.net
+	      </div>
+	      <div class="small_container">
+	          <div class="left_text"> Nodex : 5</div>
+	          <div class="right_text">Region : Singapore</div>
+	          
+	      </div>
+		    <div class="overlay">   
+				<p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+				<span>
+				<a href="#">Modify </a>
+				<a href="#"> Deploy</a>
+				</span>
+			</div>
+	    </div>
+	</div>
+	
+	
+	<!--<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 people  ">
+	<div class="flex_container">
+      <div class="brand_logo">
+        <img class="logo_image" src="images/azure.png"></img>
+      </div>
+      <div class="brand_name">
+        Rad_prod.net
+      </div>
+      <div class="small_container">
+          <div class="left_text"> Nodex : 5</div>
+          <div class="right_text">Region : US</div>
+          
+      </div>
+    <div class="overlay">   
+<p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+<span>
+<a href="#">Modify </a>
+<a href="#"> Deploy</a>
+</span>
+</div>
+	</div>
+	</div>	
+
+
+	<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 food">
+		<div class="flex_container">
+      <div class="brand_logo">
+         <img class="logo_image" src="images/vmware.png"></img>
+      </div>
+      <div class="brand_name">
+        Rad_prod.net
+      </div>
+      <div class="small_container">
+          <div class="left_text"> Nodex : 2</div>
+          <div class="right_text">Region : Frankfrut</div>
+      </div>
+	      <div class="overlay">   
+<p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+<span>
+<a href="#">Modify </a>
+<a href="#"> Deploy</a>
+</span>
+</div>
+    </div>
+	</div>
+	
+	
+
+	<div class=" col-xs-12 col-sm-6 col-md-4 col-lg-3 places people">
+		<div class="flex_container box4">
+      <div class="brand_logo">
+         <img class="logo_image" src="images/amazon.png"></img>
+      </div>
+      <div class="brand_name">
+        Rad_prod.net
+      </div>
+      <div class="small_container">
+          <div class="left_text"> Nodex : 6</div>
+          <div class="right_text">Region : US</div>
+          
+      </div>
+	      <div class="overlay">   
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+<span>
+<a href="#">Modify </a>
+<a href="#"> Deploy</a>
+</span>
+</div>
+    </div>
+	</div>
+
+
+	<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 places ">
+		 <div class="flex_container">
+      <div class="brand_logo">
+         <img class="logo_image" src="images/azure.png"></img>
+      </div>
+      <div class="brand_name">
+        Rad_prod.net
+      </div>
+      <div class="small_container">
+          <div class="left_text"> Nodex : 5</div>
+          <div class="right_text">Region : Singapore</div>
+          
+      </div>
+	      <div class="overlay">   
+<p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+<span>
+<a href="#">Modify </a>
+<a href="#"> Deploy</a>
+</span>
+</div>
+    </div>
+	</div>
+	
+
+	<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3  food people">
+	 <div class="flex_container">
+      <div class="brand_logo">
+         <img class="logo_image" src="images/amazon.png"></img>
+      </div>
+      <div class="brand_name">
+        Rad_prod.net
+      </div>
+      <div class="small_container">
+          <div class="left_text"> Nodex : 2</div>
+          <div class="right_text">Region : Frankfrut</div>
+          
+      </div>
+	      <div class="overlay">   
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+<span>
+<a href="#">Modify </a>
+<a href="#"> Deploy</a>
+</span>
+</div>
+    </div>	
+	</div>
+	
+
+	<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3  objects places ">
+		<div class="flex_container">
+      <div class="brand_logo">
+        <img class="logo_image" src="images/amazon.png"></img>
+      </div>
+      <div class="brand_name">
+        Rad_prod.net
+      </div>
+      <div class="small_container">
+          <div class="left_text"> Nodex : 2</div>
+          <div class="right_text">Region : Frankfrut</div>
+          
+      </div>
+	      <div class="overlay">   
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+<span>
+<a href="#">Modify </a>
+<a href="#"> Deploy</a>
+</span>
+</div>
+    </div>
+	</div>
+
+
+	<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 food places ">
+		<div class="flex_container box4">
+      <div class="brand_logo">
+         <img class="logo_image" src="images/amazon.png"></img>
+      </div>
+      <div class="brand_name">
+        Rad_prod.net
+      </div>
+      <div class="small_container">
+          <div class="left_text"> Nodex : 6</div>
+          <div class="right_text">Region : US</div>
+          
+      </div>
+	      <div class="overlay">   
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+<span>
+<a href="#">Modify </a>
+<a href="#"> Deploy</a>
+</span>
+</div>
+    </div>
+	</div>-->	
+</div>
+
+
+</div>  
+<div class="footer-part">
+<div class="footer">
+<div class="copyright">
+<ul>
+<li><a href="#">Home</a></li>
+
+<li><a href="#">Terms of use</a></li>
+<li><a href="#">Offerings</a></li>
+<li><a href="#">Blog</a></li>
+<li><a href="#">Wiki</a></li>
+<li><a href="#">Contact Us</a></li>
+</ul>
+<!-- <span class="footer_txt"><a href="#">Home</a></span>
+<span class="footer_txt"><a href="#">Terms of use</a></span>
+<span class="footer_txt"><a href="#">Offerings</a></span>
+<span class="footer_txt"><a href="#">Blog</a></span>
+<span class="footer_txt"><a href="#">Wiki</a></span>
+<span class="footer_txt_lst"><a href="#">Contact Us</a></span> -->
+
+</div><!--copyright-->
+<div class="footer_icon"> 
+  
+<img class="footer_icon" src="images/socialmedia.png"></img>
+
+</div> </div><!--footer-->
+</div><!--footer-part-->
+</div>
+
+  </div>
+
+
+
+
+</div>
+  
+  
+
+<script src="http://code.jquery.com/jquery-latest.js" type="text/javascript"></script>
+<script src="js/jquery.isotope.js" type="text/javascript"></script>
+<script src="js/bootstrap.js"></script>
+  
+  <script>
+var toggle = true;
+            
+$(".sidebar-icon").click(function() {                
+  if (toggle)
+  {
+    $(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
+    $("#menu span").css({"position":"relative"});
+  }
+  else
+  {
+    $(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
+    setTimeout(function() {
+      $("#menu span").css({"position":"relative"});
+    }, 400);
+  }
+                
+                toggle = !toggle;
+            });
+</script>
+
+
+ 
+   <script type="text/javascript">
+
+$(document).ready(function(){
+    var $container = $('.portfolioContainer');
+    $container.isotope({
+        filter: '*',
+        animationOptions: {
+            duration: 750,
+            easing: 'linear',
+            queue: false
+        }
+    });
+	
+	
+ 
+    $('.portfolioFilter a').click(function(){ 
+        $('.portfolioFilter .current').removeClass('current');
+        $(this).addClass('current');
+ 
+        var selector = $(this).attr('data-filter');
+        $container.isotope({
+            filter: selector,
+            animationOptions: {
+                duration: 750,
+                easing: 'linear',
+                queue: false
+            }
+         });
+         return false;
+    }); 
+});
+
+  
+ 
+   
+
+</script> 
+    
+   
+
+
+</body>
+</html>

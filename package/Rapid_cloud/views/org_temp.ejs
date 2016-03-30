@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+
+<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+<link rel="stylesheet" type="text/css" href="/stylesheets/tmplt_create.css">
+<link rel="stylesheet" type="text/css" href="/stylesheets/org_temp.css"> 
+<link rel="stylesheet" type="text/css" href="/css/ddcss.css" /> 
+<script src="/js/jquery-1.3.2.min.js" type="text/javascript"></script>
+<script src="/js/mini.js" type="text/javascript"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="/js/org_temp.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+	var rarr=[];
+	var oarr=[];
+	var atarr=[];
+	var varr=[];
+	var save_info=[];
+	var z=1;
+		jQuery(document).ready(function() {	  
+	  	
+			$(".btn").click(function(){	
+			
+			jQuery("#detais").show();	
+				//$('tr#selrole td.seltrole').text(rtype);
+				//$('tr#selos td.seltos').text(otype);
+				//$('tr#selatt td.seltatt').text(atype);
+				//$('tr#selver td.seltver').text(vtype);
+				$("#ntable tbody tr:first").clone().find("select").each(function(){
+				$(this).val('').attr('id', function(_, id){return id + z});
+				}).end().appendTo("#ntable");
+			
+			z++;
+			
+		});
+});
+
+var idt;
+$(document).on('click', '.del', function () {
+	 idt=$('this').closest('td').find("select").attr('id');
+	  console.log(idt);
+    // $(this).closest('tr').remove();
+     //return false;
+     //alert(z);
+     console.log(z);
+     for(var i=z;i>1;i--)
+     {
+     document.getElementById("ntable").deleteRow(i);
+     break;
+     }
+     z--;
+ });
+ /*
+ $(document).ready(function(e) {
+try {
+$(".ntable tbody select").msDropDown();
+} catch(e) {
+alert(e.message);
+}
+});
+*/
+window.onload = function(){ 
+
+$('#gen_temp').hide();
+$('#ndisp').hide();
+$('#view_template').hide();
+$('#pro_temp').hide();
+$('#upt').hide();
+
+
+var nodes = <%- JSON.stringify(data) %>;
+var types=nodes[0].types;
+var type2=nodes[1].types;
+var subroles=nodes[0].subrole;
+//alert(types[0].subrole);
+//alert(type2[1].name);
+var role=[];
+var os=[];
+var rimg=[];
+
+for(var i=0;i< types.length;i++)
+{
+	//var imarr=[];
+	//imarr.push(images/Database.jpg);
+	rimg[i]=types[0].image;
+	role[i]=types[i].name;
+	//option = $('<ul onclick = "myfunction(this.id)"/>');
+	option = $('<option/>');
+			   option.attr("value", role[i]).text(role[i]);
+			   option.attr("id", role[i]).text(role[i]);
+			   //option.attr("img", rimg[i]).src(rimg[i]);
+			   $('.rcontent').append(option);	
+	
+}
+for( var j=0;j< type2.length;j++)
+{
+	os[j]=type2[j].name;
+	//option = $('<ul onclick = "vfunction(this.id)"/>');
+	option = $('<option/>');
+			   option.attr("value", os[j]).text(os[j]);
+			   option.attr("id", os[j]).text(os[j]);
+			   $('.pcontent').append(option);			   
+}
+
+//alert(os);
+}
+
+var rtype;
+function myfunction(roles){
+		
+		var str=roles.id;
+		var num=str.replace(/\D/g, "");
+		//alert(num);
+		rtype=roles.value;
+			if(num!=null)
+				{
+					rarr.splice(num,1,rtype);
+					}
+			else
+				{
+				rarr.splice= (0,1,rtype);
+				}
+		var arl = 'acontent'+num;
+		$('tr#selrole td.seltrole').text(rtype);
+		//alert(arl);
+		var nodes = <%- JSON.stringify(data) %>;
+		var types=nodes[0].types;
+		var type2=nodes[1].types;
+		var role=[];
+		var srole=[];
+			for(i=0;i< types.length;i++)
+				{
+					role[i]=types[i].name;
+ 					for(j=0;j<role.length;j++)	
+ 					{
+						if( role[j]==rtype)
+						break;
+   					}
+   
+				 }
+  		srole=types[j].subrole;
+  		//alert(srole[0]);
+ 		 $('select#'+arl).empty();
+  		for(k=0;k<srole.length;k++)
+  		{
+   			   option = $('<option/>');
+			   option.attr("value", srole[k]).text(srole[k]);
+			   option.attr("id", srole[k]).text(srole[k]);
+			   $('#'+ arl).append(option);		
+  
+ 		 }
+ }
+var atype;
+var vtype;
+var otype;
+		function vfunction(osc){
+			sel_os = osc;
+			var dyid=osc.id;
+ 			otype=osc.value;
+ 			var num2=dyid.replace(/\D/g, "");
+ 			if(num2!=null)
+				{
+					oarr.splice(num2,1,otype);
+					}
+			else
+				{
+				oarr.splice = (num2,1,otype);
+				}
+ 			
+				 $('tr#selos td.seltos').text(otype);
+ 										
+					var vrl='vcontent'+ num2;
+					//alert(vrl); 
+					var nodes = <%- JSON.stringify(data) %>;
+					var types=nodes[0].types;
+					var type2=nodes[1].types;
+					var os=[];
+					var osv=[];
+						for(i=0;i< type2.length;i++)
+							{
+								os[i]=type2[i].name;
+ 									for(j=0;j<os.length;j++)	{
+										if( os[j]==otype)
+										break;
+   									}
+   
+ 								}
+  									osv=type2[j].version;
+  									//alert(osv[0]);
+									  $('select#'+vrl).empty();
+ 									 for(k=0;k<osv.length;k++){
+   										option = $('<option/>');
+			 						 	 option.attr("value", osv[k]).text(osv[k]);
+			  							 option.attr("id", osv[k]).text(osv[k]);
+			  							 $('#'+ vrl).append(option);		
+  			   
+  										}
+								}
+
+function somefunction(rat){
+	 atype=rat.value;
+	 var rid=rat.id;
+	 num3=rid.replace(/\D/g, "");
+	 if(num3!=null)
+				{
+					atarr.splice(num3,1,atype);
+					}
+			else
+				{
+				atarr.splice = (num3,1,atype);
+				}
+	 
+	 $('tr#selatt td.seltatt').text(atype);
+}
+
+function morefunction(over){
+	 vtype=over.value;
+	 var vid=over.id;
+	 num4=vid.replace(/\D/g, "");
+	 if(num4!=null)
+				{
+					varr.splice(num4,1,vtype);
+					}
+			else
+				{
+				varr.splice = (num4,1,vtype);
+				}
+	 	 $('tr#selver td.seltver').text(vtype);
+	 //alert(over.id);
+	 document.getElementById(over.id)
+	$('#ndisp').show();
+}
+
+
+function complete(inst){
+
+//jQuery("#select_attr").show();
+$('#upt').show();
+$('#ndisp').hide();
+
+$('#select_attr').empty();
+save_info=[];
+
+    for (var i=0;i<rarr.length;i++)
+    {
+    	var role_info={};
+    	//console.log(rarr[i]+oarr[i]);
+		role_info.role=rarr[i];
+		role_info.os=oarr[i];
+		role_info.attribute=atarr[i];
+		role_info.version=varr[i];
+		console.log(role_info);
+		save_info.push(role_info);
+	}
+	
+	//console.log(save_info);
+	//window.alert(save_info.length);
+	$('#select_attr').append("<table></table>");
+	var table=$('#select_attr').children();
+	//alert(save_info.length);
+	for(var j=0;j<save_info.length;j++)
+	{
+		table.append("<tr><th><h3>" + save_info[j].role + "</th></tr>");
+		table.append("<tr><td><b>Operating System : </b>" + save_info[j].os + "</td></tr>");
+		table.append("<tr><td><b>Role Attribute :</b> " + save_info[j].attribute + "</td></tr>");
+		table.append("<tr><td><b>OS Version : </b>" + save_info[j].version + "</td></tr></br>");
+	}
+}
+	 
+function update(inst){
+$('#select_attr').empty();
+$('#ndisp').hide();
+save_info=[];
+//alert(z);
+
+
+    for (var i=0;i<rarr.length;i++)
+    {
+    	var role_info={};
+    	role_info.role=rarr[i];
+		role_info.os=oarr[i];
+		role_info.attribute=atarr[i];
+		role_info.version=varr[i];
+		console.log(role_info);
+		save_info.push(role_info);
+	}
+	
+	$('#select_attr').append("<table></table>");
+	var table=$('#select_attr').children();
+	if(rarr.length>z)
+	{
+	
+		save_info.pop();
+		for(var j=0;j<z;j++)
+	{
+		table.append("<tr><th><h3>" + save_info[j].role + "</th></tr>");
+		table.append("<tr><td><b>Operating System : </b>" + save_info[j].os + "</td></tr>");
+		table.append("<tr><td><b>Role Attribute :</b> " + save_info[j].attribute + "</td></tr>");
+		table.append("<tr><td><b>OS Version : </b>" + save_info[j].version + "</td></tr>");
+	}
+	
+	}
+	
+	else{
+	for(var j=0;j<save_info.length;j++)
+	{
+		table.append("<tr><th><h3>" + save_info[j].role + "</th></tr>");
+		table.append("<tr><td><b>Operating System : </b>" + save_info[j].os + "</td></tr>");
+		table.append("<tr><td><b>Role Attribute :</b> " + save_info[j].attribute + "</td></tr>");
+		table.append("<tr><td><b>OS Version : </b>" + save_info[j].version + "</td></tr>");
+	}
+	}
+	console.log(save_info);
+
+}	 
+
+function save_temp_info(){
+	//alert(save_info.length);
+	var ary1=JSON.stringify(save_info);
+	//alert(ary1);
+	//alert(save_info[0].role);
+	var te_name=document.getElementById("ttname").value;	 
+	$.ajax({
+	     type: 'POST',
+		 jsonpCallback: "callback",
+	     datatype: 'jsonp',
+	     data: "d1="+ary1+"&d2="+te_name,
+	     //data: arr,
+	     url: 'http://172.29.59.65:3000/node_store',
+	     success: function(results) {
+	    	 alert("inserted Successfully");
+	    	location.href="//172.29.59.65:3000/create_template2"+"?data="+te_name; 
+	     },
+		 error: function (xhr, status, error){
+	        console.log('Failure');
+			alert("failure");
+			},
+		 });
+	//location.reload();
+}
+
+</script>
+</head>
+<style>
+
+div.formLayout
+{ 
+position: fixed;
+background: ghostwhite ;
+@margin-left : 300px;
+@margin-top : 90px;
+width : 1265px;
+
+}
+
+#header_content1 {
+
+position: relative; 
+background: #d9271d;
+padding: 20px; 
+width: 1225px;
+height: 20px;
+@font-family:"Times New Roman";
+@font-size:180%; 
+}
+
+#footer { 
+
+margin-top:700px;
+background: #100000 ;
+padding: 20px; 
+width: 1225px;
+height: 20px;
+font-family:"Times New Roman";
+font-size:180%;` 
+}
+
+#Nodes{
+
+margin-left : 780px;
+}
+
+.button,.cancel
+
+{
+margin-left:10px;
+padding:5px;
+color: #fff;
+background-color: #F00000;
+font-weight: bold;
+font-size: 100%;
+width:100px;
+
+}
+.save
+
+{
+margin-left:500px;
+padding:5px;
+color: #fff;
+background-color: #F00000;
+font-weight: bold;
+font-size: 100%;
+width:100px;
+}
+
+#Provider,#region1
+
+{
+width:150px; 
+height: 25px
+}
+
+#cld,#rgn,#tname,#tdesc
+
+{
+font-size: 120%; 
+}
+
+</style>
+
+<body>
+
+
+
+<header>
+
+<img src="/stylesheets/logo.png" height="71px" width="372px"/> 
+</header>
+
+ 
+
+<div id="header_content1">
+ 
+<div id="menu" class="menu">
+<form id="menus" class="menus">
+<div id="nav">
+<ul>
+<li><a href="#">Node</a>
+<ul> 
+<li><a href="http://172.29.59.65:3000/">Create</a></li> 
+<li><a href="#">Deploy</a></li> 
+<li><a href="#">Manage</a></li> 
+</ul>
+</li> 
+<li><a href="#">Template</a>
+<ul>
+<li><a href="#">View</a></li>
+<li><a href="#" id="create">Create</a></li> 
+<li><a href="http://172.29.59.65:3000/deploy">Deploy</a></li> 
+<li><a href="http://172.29.59.65:3000/manage_env">Manage</a></li> 
+</ul>
+</li>
+<li><a href="#">Project</a>
+<ul>
+<li><a href="#">Create</a></li>
+<li><a href="#">view</a></li> 
+</ul>
+</li>
+<li><a href="#">Blueprint</a>
+<ul>
+<li><a href="#">Create</a></li>
+<li><a href="#">view</a></li>
+<li><a href="#">Deploy</a></li> 
+</ul>
+</li>
+<li><a href="#">About</a>
+<ul>
+<li><a href="#">News</a></li>
+<li><a href="#">Contact</a></li> 
+</ul>
+</li> 
+</ul>
+</div>
+</form>
+</div>
+</div>
+
+<div class="formLayout">
+<div class="extreme_left">
+<input type="button" id="cretemp" value="+" onClick="mytemp(this.id)"></input>
+
+
+		<p class="template" id="template" onclick="view_temp()">Templates</p>		
+			
+		</div>
+<div class="center">
+<div class="center_right" id="center_right">
+
+
+<div id="view_template">
+
+	<h2 align="center">View Templates</h2>
+	<hr></hr>
+	<div id="view_temp1" class="view_temp">
+		<p>My Templates</p>
+			<div id="my_temp_info">			
+			</div>			
+	</div>
+	<hr></hr>
+	<div id="view_temp1" class="view_temp">
+		<p>Generic Templates</p>
+			<div id="gn_temp_info">			
+			</div>			
+	</div>
+	<hr></hr>	
+
+
+</div>
+
+
+<form id="gen_temp" class="gen_temp">
+<h2 style="text-align:center">Organization Templates</h2>
+<table id="ntable" class="ntable">
+	<thead>
+ 	<tr>
+		<th style="width:140px;">Roles</th>
+		<th style="width:140px;">Operating System</th>
+		<th style="width:140px;">Role Attributes</th>
+		<th style="width:140px;">OS Versions</th>
+	</tr>
+	</thead>
+   	<tbody class="allp" id="allp">
+		<tr id="tecontent" class="tecontent">
+			<td class="cell">
+				<select id="rcontent" class="rcontent"  onchange = "myfunction(this)">
+				<option>Roles</option>
+				
+				</select>
+			</td>
+			<td class="cell">
+				<select id="pcontent" class="pcontent"  onchange = "vfunction(this)">
+				<option>Operating System </option>
+				</select>
+			</td>
+			<td class="cell">
+				<select id="acontent" class="acontent" onchange="somefunction(this)">
+				<option>Role Attributes</option>
+				</select>
+			</td>
+			<td class="cell">
+				<select id="vcontent" class="vcontent" onchange="morefunction(this)">
+				<option>OS Versions</option>
+				</select>
+			</td>
+
+		</tr>
+	</tbody>
+</table>
+                <input type="button" class="del" value="-"></input>	
+ 				<input type="button" class="btn" id="btn" value="+"></input>	
+ 				<input type="button" class="sub" id="sub" value="Review" onclick="complete(this)"></input>
+ 				<!--<input type="button" class="upt" id="upt" value="Update" onclick="update(this)"></input>-->			
+        	
+
+</form>		
+</div>
+
+<div class="center_left">
+
+	
+	<div id="show_gen_info">
+	
+		<p class="temp_info">Generic Template information</p>
+			<table class="table_gen_info" cellpadding="10">		
+				<tr class="gen_role_info">
+					<th>Template Name :</th>
+				</tr>
+				<tr></tr>		
+				<tr>
+					<table class="table_gen_nodes" cellpadding="10">
+					<thead>
+						<tr align="left">
+							<th>Role </th>
+							<th>OS</th>
+							<th>Attribute</th>
+							<th>Version</th>
+						</tr></thead>
+					</table>
+				</tr>
+			</table>
+			<hr></hr>
+			<input type="button" value="Create" class="actions" onclick="create_pvd_temp()"/>
+			<input type="button" value="Cancel" class="actions"/>
+			
+	</div>
+	
+		<div id="show_my_info">
+		<p class="temp_info">My Template information</p>
+		<table class="table_my_info" cellpadding="10">		
+				<tr align="right" class="my_role_info1">
+					<th>Template Name :</th>
+				</tr>
+				<tr align="right" class="my_role_info2">
+					<th>Cloud :</th>
+				</tr>
+				<tr align="right" class="my_role_info3">
+					<th>Region :</th>
+				</tr>
+				<tr></tr>		
+				<tr>
+					<table class="table_my_nodes" cellpadding="10">
+					<thead>
+						<tr align="left">
+							<th>Node</th>
+							<th>Role</th>
+							<th>Image</th>
+						</tr></thead>
+					</table>
+				</tr>
+			</table>
+			<hr></hr>
+			<input type="button" value="Deploy" class="actions"/>
+			<input type="button" value="Cancel" class="actions"/>		
+	</div>
+
+
+	
+	<div id="detais" class="details">
+	
+		<table id="ndisp" class="ndisp">
+		<h2 style="text-align:center;"><b>Summary</h2>
+			<tr id="selrole">
+				<th>Role :</th>
+				<td class="seltrole"></td>
+			</tr>
+			<tr id="selos">
+				<th>Operating System:</th>
+				<td class="seltos"></td>
+			</tr>
+			<tr id="selatt">
+				<th>Role Attribute :</th>
+				<td class="seltatt"></td>
+			</tr>
+			<tr id="selver">
+				<th>OS Version :</th>
+				<td class="seltver"></td>
+			</tr>
+		
+		</table>
+		</div>
+			<div class="select_attr" id="select_attr">
+			</div>	
+			
+			<input type="button" class="upt" id="upt" value="Update" onclick="update(this)"></input>			
+			<form name="form" action="pro_temp" class="pro_temp" id="pro_temp">
+				<b>Template Name:&nbsp&nbsp<input type="text" onchange ="test_name(this.value)" name="template"  placeholder="Template Name" id="ttname"></input><br>
+			<input type="button" value="Save" class="sbtn" onclick="save_temp_info()"></input>
+			</form>
+
+	
+
+</div>
+</div>
+</div>
+<footer>
+<font color="#FFFFFF">Follow us:</font>
+</footer>
+</body>
+</html>

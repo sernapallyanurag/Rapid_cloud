@@ -1,0 +1,352 @@
+div.center
+{
+	border : 1px;
+	margin-top:1px;
+	height : 695px;
+	width : 1044px;
+	float: right;
+}
+
+
+div.center_left
+{
+	border: 0px;
+	border-style: solid;
+	height : 698px;
+	margin-top:0px;
+	margin-left:0px;
+	width : 500px;
+	float: right;
+	box-shadow: -10px 0px 10px 1px #888888;
+	
+}
+
+div.center_right
+{
+	@border: 1px;
+	@border-style: solid;
+	height : 100%;
+	margin-top:0px;
+	width : 520px;
+	margin-left:0px;
+	float: left;
+	@overflow: scroll;
+	
+}
+
+div.extreme_left{
+	width:210px;
+	height:699px;
+	float:left;
+	background-color:#d3d3d3;
+	box-shadow: 10px 0px 10px #888888;
+}
+
+table.new_table
+{
+	border: 0;
+	margin-top: 8px;
+	margin-bottom:50px;
+	margin-left:5px;
+	border-collapse: collapse;
+	@border-color : #d3d3d3;
+}
+table.new_table th{
+	text-align: center;
+	width:165px;
+	height: 30px;
+	font-size:18px;
+	background:grey;
+	color:white;
+	 border-spacing: 3px;
+}
+
+table.new_table td{
+	text-align: center;
+	width:1650px;
+	height: 50px;
+	font-size:17px;
+}
+
+table.new_table tr {
+    cursor: pointer;
+}
+
+table.new_table tr:hover {
+    background-color: #bfbfbf;
+}
+
+table.new_table tbody:nth-child(even) 
+{
+    background-color: #eee;
+    
+}
+table.new_table tbody:nth-child(odd) 
+{
+   background-color:#fff;
+}
+
+table.new_table td .sign:after{
+  content:"+";
+  display:inline-block;      
+}
+table.new_table td .sign:after{
+  content:"-";
+ }
+table.center_left_table1
+{
+	cellpadding:0;
+	cellspacing:0;
+	border-collapse: collapse;
+	border:0;
+	border-width: 0;
+}
+
+table.center_left_table1 td{
+	height: 30px;
+	text-align:left;
+	font-size:17px;
+}
+
+table.center_left_table2 td{
+	height: 30px;
+	text-align:center;
+	font-size:16px;
+}
+
+table.center_left_table2 th{
+	text-align: center;
+	width:165px;
+	height: 20px;
+	font-size:18px;
+	background:grey;
+	color:white;
+	 border-spacing: 3px;
+}
+
+table.center_left_table2 tr:nth-child(even) 
+{
+    background-color: #eee;
+    
+}
+table.center_left_table2 tr:nth-child(odd) 
+{
+   background-color:#fff;
+  
+}
+
+#deployform
+{
+	position : absolute;
+	margin-top: 20px;
+	margin-left: 30px;
+} 
+
+table.center_left_table2 tr {
+    cursor: pointer;
+}
+
+table.center_left_table2 tr:hover {
+    background-color: #bfbfbf;
+}
+
+#popup{
+    display: none;
+    border: 0px solid black;
+}
+
+div.layer1 {
+margin-top: 50px;
+padding: 0;
+width: 210px;
+}
+
+
+p.heading {
+margin: 1px;
+color: #fff;
+padding: 10px 10px;
+cursor: pointer;
+position: relative;
+background-color:#c30;
+
+}
+
+div.content1 {
+padding: 5px 10px;
+background-color:#fafafa;
+}
+
+ 
+
+
+
+div.nodes {
+    height: 20px;
+    width: 20px;
+    background: #006600;
+    float: right;
+    cursor: pointer;
+    margin-left:80px;
+    margin-right:20px;
+    margin:10px;
+    @position:relative;
+}
+
+
+
+
+
+.color {
+    background-color: yellow;
+}
+
+input.fnbutton
+{
+
+	background-color:#d9271d;
+	height: 30px;
+	width: 100px;
+	margin-left: 20px;
+	color:white;
+}
+
+th.app_env{
+	font-size:18px;
+}
+
+td.tename{
+	font-size:18px;
+	width: 150px;
+}
+
+th.app_vpc{
+	font-size:18px;
+}
+
+th.vname{
+	font-size:18px;
+}
+
+
+
+@import url("http://getbootstrap.com/dist/css/bootstrap.css");
+@import url("http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css");
+
+
+p.projects {
+margin: 1px;
+color: #fff;
+padding: 10px 10px;
+cursor: pointer;
+position: relative;
+background-color:#c30;
+text-align: center;
+font-size:20px;
+margin-top:8px;
+}
+
+ 
+
+div.pcontent {
+padding: 5px 10px;
+background-color:#fafafa;
+}
+
+ 
+
+p.projects { padding: 5px 0; }
+
+
+div.role_node{
+    text-align: left;
+    @margin-left:10px;
+    line-height: 30px;
+    color: blue;
+    @float:left;
+    @display: inline-block;
+    @position:relative;
+    width: 92%;
+    height:50px;
+    background: #999999;
+    margin: 10px;
+    overflow:auto;
+    border: 2px dashed #0080ff;
+    margin-top: 4px;
+    border-radius: 10px;
+}
+
+table.deploytable1{
+	width:98%;
+	margin-left:10px;
+}
+table#deploytable2{
+	width:100%;
+	border: 0;
+    border-spacing:0px;
+}
+
+table#deploytable2 tr.dhead2 th{
+	background:#bfbfbf;
+	text-align:center;
+	height:50px;
+	font-size:18px;
+}
+
+table#deploytable2 tr.env_row{
+	height:50px;
+	background:#d9d9d9;
+	cursor: pointer;
+	
+	
+	
+}
+
+table#deploytable2 tr.env_row td{
+	text-align:center;
+	border-collapse: collapse;
+}
+
+table#deploytable1 tr#checkid{
+	height:50px;
+	background:#b3b3b3;
+	cursor: pointer;
+}
+
+table#deploytable1 tr.dhead1 th{
+	height:50px;
+	background: #737373;
+	color:white;
+
+}
+
+table.left_tab_1{
+	width:90%;
+	height:80px;
+}
+
+table.left_tab_1 th{
+	height:40px;
+	width:50%;
+}
+
+div#node_info{
+	height:60%;
+}
+
+input.actions{
+	margin-left:20px;
+	margin-top:20px;
+	box-shadow: 5px 1px 5px 1px #888888;
+	height:35px;
+	cursor:pointer;
+	width:73px;
+	background:#404040;
+	color:#ffcc00;
+}
+
+input[type=button]:disabled {
+    background: #999999;
+    cursor:default;
+    color:#f2f2f2;
+}

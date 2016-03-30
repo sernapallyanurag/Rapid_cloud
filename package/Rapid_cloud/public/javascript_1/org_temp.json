@@ -1,0 +1,74 @@
+/* 0 */
+{
+  "_id" : ObjectId("5678e6ba3f177d9c12e36ade"),
+  "attribute" : "Role",
+  "types" : [{
+      "name" : "Database",
+      "image" : "images/Database.jpg",
+      "subrole" : ["Role Attributes", "oracle sql", "windows sql", "mysql", "postgre", "mongodb", "cassandra", "redis", "sybase", "informix", "ibm-db2", "ingres", "Hbase"]
+    }, {
+      "name" : "WebServer",
+      "subrole" : ["Role Attributes", "Nginx", "tomcat", "IIS", "zeus", "apache http", "lighttpd", "oracle weblogic"]
+    }, {
+      "name" : "ApplicationServer",
+      "subrole" : ["Role Attributes", "java", "PHP", "nodejs", "wakanda", "glassfish", "wildfly", "jboss", "tomcat", "TomEE", "jetty", "python", "django", "gunicorn", "dpaste", "perl", "rubystack", "smalltalk"]
+    }, {
+      "name" : "Integration",
+      "subrole" : ["Role Attributes", "jenkins", "travis"]
+    }, {
+      "name" : "Test Server",
+      "subrole" : ["Role Attributes", "jmeter", "selenium"]
+    }, {
+      "name" : "Build Server",
+      "subrole" : ["Role Attributes", "Ant", "Maven"]
+    }, {
+      "name" : "Proxy Server",
+      "subrole" : ["Role Attributes", "Proxy Server"]
+    }, {
+      "name" : "Mail Server",
+      "subrole" : ["Role Attributes", "Mail"]
+    }]
+}
+
+/* 1 */
+{
+  "_id" : ObjectId("5678e6ba3f177d9c12e36adf"),
+  "attribute" : "Operating System",
+  "types" : [{
+      "name" : "Ubuntu",
+      "version" : ["OS Versions", "8.04", "10.04", "11.04", "12.04", "13.04", "14.04", "15.04"]
+    }, {
+      "name" : "Debian",
+      "version" : ["OS Versions", "6", "7", "8"]
+    }, {
+      "name" : "Fedora",
+      "version" : ["OS Versions", "Cloudbase", "Cloudatomic"]
+    }, {
+      "name" : "SUSE",
+      "version" : ["OS Versions", "11", "12", "13"]
+    }, {
+      "name" : "CentOS",
+      "version" : ["OS Versions", "5", "6", "7"]
+    }, {
+      "name" : "RHEL",
+      "version" : ["OS Versions", "5", "6", "7"]
+    }, {
+      "name" : "Windows",
+      "version" : ["OS Versions", "server-2003", "server-2003-R2", "server-2008", "server-2008-R2", "server-2012", "server-2012-R2"]
+    }, {
+      "name" : "Horton",
+      "version" : ["OS Versions", "horton2.0", "horton2.1", "horton2.2", "horton2.3"]
+    }, {
+      "name" : "Oracle",
+      "version" : ["OS Versions", "linux"]
+    }, {
+      "name" : "CoreOS",
+      "version" : ["OS Versions", "alpha", "beta", "stable"]
+    }, {
+      "name" : "Solaris",
+      "version" : ["OS Versions", "opensolaris"]
+    }, {
+      "name" : "Amazon",
+      "version" : ["OS Versions", "Linux"]
+    }]
+}

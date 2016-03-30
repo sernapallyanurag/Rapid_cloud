@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+<link rel="stylesheet" type="text/css" href="/stylesheets/tmplt_create.css">
+<link rel="stylesheet" type="text/css" href="/stylesheets/template2.css">
+<script src="/js/tmplt_create.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<script>
+$(document).ready(function() {
+ $('#template').hide(); 
+  $('#nodes').hide();
+   $('#right_content').hide();
+  
+  
+  $('#create').click(function() {
+   $('#template').show();
+   });
+   
+    $('#button1').click(function() {
+	 $('#nodes').show();
+	 }); 
+	 
+	 $('#button3').click(function() {
+	 $('#right_content').show();
+	 });    
+ });
+</script>
+<body>
+<header>
+<img src="/stylesheets/logo.png" height="71px" width="372px"/>	
+</header>
+
+<div id="header_content1">
+
+<div id="menu" class="menu">
+<form id="menus" class="menus">
+		<div id="nav">
+		<ul>
+		<li><a href="#">Node</a>
+		<ul>			
+			<li><a href="http://172.29.59.65:3000">Create</a></li>			
+			<li><a href="#">Deploy</a></li>		
+			<li><a href="#">Manage</a></li>		
+		</ul>
+		</li>		
+		<li><a href="#">Template</a>
+		<ul>
+			<li><a href="http://172.29.59.65:3000/PreView">View</a></li>
+			<li><a href="#" id="create">Create</a></li>			
+			<li><a href="http://172.29.59.61:3000/deploy">Deploy</a></li>		
+			<li><a href="172.29.59.61:3000/manage_env">Manage</a></li>		
+		</ul>
+		</li>
+		<li><a href="#">Project</a>
+		<ul>
+			<li><a href="#">Create</a></li>
+			<li><a href="#">view</a></li>						
+		</ul>
+		</li>
+		<li><a href="#">Blueprint</a>
+		<ul>
+			<li><a href="#">Create</a></li>
+			<li><a href="#">view</a></li>
+			<li><a href="#">Deploy</a></li>			
+		</ul>
+		</li>
+		<li><a href="#">About</a>
+		<ul>
+			<li><a href="#">News</a></li>
+			<li><a href="#">Contact</a></li>			
+		</ul>
+		</li>		
+		</ul>
+		</div>
+	</form>
+</div>
+</div>
+<div class="formLayout">
+<div class="center_left">
+	<form id="template">
+	</br>
+	<p align="left"><label id="cld"><b>Select Cloud Provider  &nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp </b></label>
+	<select id="Provider" onchange="provider(this.value)" >
+		<option>&nbsp&nbsp&nbsp&nbsp--Select--</option>
+		<option value="AWS">AWS</option>
+		<option value="Azure">AZURE</option>		
+		<option value="HP HELION">HP HELION</option>
+		<option value="OPENSTACK">OPENSTACK</option>
+		<option value="SOFTLAYER">SOFTLAYER</option>
+		</select></br>
+	</p>
+	<p align="left"><label id="rgn"><b>Select Region  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	&nbsp&nbsp&nbsp&nbsp:&nbsp </b></label>
+	<select id="region1" name="region1" class="region1"></select></br>
+	</p>	
+	<p align="left">
+	<div id="node_details1">
+	<input class="button" type="button" id="button1" value="Add Nodes" onclick="node_details()"/> 
+	</div>
+		<div id="nodes">
+		
+		<p align="left">
+		<label id="role"><b>Select Role &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				&nbsp&nbsp&nbsp&nbsp:&nbsp</b></label>
+	
+			<select id="i_roles">
+				<option>&nbsp&nbsp&nbsp&nbsp--Select--</option>
+				<option>Data Base</option>
+				<option>Web Server</option>
+				<option>App Server</option>
+			</select></p>
+		
+		<p align="left">
+		<label id="tname"><b>Select Image Family
+			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp :&nbsp </b></label>
+			<select id="image" onchange="image2(this.value)" >
+				<option>&nbsp&nbsp&nbsp&nbsp--Select--</option>
+				<option value="ubuntu">Ubuntu</option>
+				<option value="fedora">Fedora</option>
+				<option value="windows">Windows</option>
+				<option value="RH">Red Hat</option>
+				<option value="bitnami">Bitnami</option>
+				<option value="chef">Chef</option>
+				<option>Openbravo</option>
+			</select></p>	
+		<h3><u>Instance Details</u></h3>	
+		<div id="table_content">
+		<p align="left">
+			<label id="Iname"><b>Select Image &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp :&nbsp </b></label>
+			<select id='image1' name='image1' class='image1'>
+			</select>
+			</p>
+		<table border="1" class="new_table">
+		<thead>
+		<tr>
+			<th>Inst_Name</th>
+			<th>VCPU</th>	
+			<th>Memory_gib</th>
+			<th>Storage</th>
+			<th>Clock Speed</th>
+			<!--<th>Select Role</th>-->
+			<!--<th>Select Image</th>-->										
+			<th>select</th> 
+		</tr>
+		</thead>		
+</table>
+
+</br>
+<p>
+	<input type="button" class="add" id="button3" value="Add" onclick="myFunction()"/>	
+	<input type="reset" class="cancel" id="button4" value="Cancel"/>
+</p>
+</div>
+</div>
+</div>	
+</form>
+<div class="center_right">
+	<div id="right_content">
+	<h2 align="center"><u>Node Details</u></h2>
+	<h3 id="pv_name"></h3>
+	<h3 id="pv_region"></h3>
+	<h3 id="inst_name"></h3>
+	<h3 id="img_role"></h3>
+	<h3 id="img_name"></h3>	
+	<hr></hr>
+	<p align="left">
+			<label id="tname"><b>Template Name &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			&nbsp&nbsp&nbsp&nbsp :&nbsp </b></label>
+			<input type="text" id="T_name" placeholder="Temp_Name" autofocus/></p>
+	
+		<p align="left">
+			<label id="tdesc"><b>Template Descriptiopn &nbsp&nbsp :&nbsp </b></label>
+			<input type="text" id="desc" placeholder="Temp_Description"/></p>
+		
+		<p align="left">
+			<label id="s_date"><b>Select Date &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp </b></label>
+			<input type="date" id="date"/></p>	
+	<p>
+		<input type="button" class="save" id="button5" value="Save" onclick="saveFunction()"/>	
+		<input type="reset" class="cancel" id="button6" value="Cancel"/>
+	</p>
+	</div>	
+</div>
+</div>	
+<footer class="footer1">
+<font color="#FFFFFF">Follow us:</font>
+</footer>
+
+</body>
+</html>

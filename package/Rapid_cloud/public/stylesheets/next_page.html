@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="next_style.css">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="instance.js"></script>  
+<script src="front_filter.js"></script>
+ <script src="filter_data.js"></script> 
+<script type="text/javascript">
+function test(el) {
+    var id1 = $(el).closest("tr").find('td:eq(0)').text();
+	var id2 = $(el).closest("tr").find('td:eq(1)').text();
+	var id3 = $(el).closest("tr").find('td:eq(2)').text();
+	var id4 = $(el).closest("tr").find('td:eq(3)').text();
+	var id5 = $(el).closest("tr").find('td:eq(4)').text();
+	
+ //alert(id1+id2+id3+id4+id5);
+ location.href='proj_det.html?prov_id='+id1+"&vcpu="+id2+"&mem="+id3+"&store="+id4+"&cpu="+id5;
+    //alert(id);
+}
+</script>
+<script>
+function myFunction() {
+	
+    //var prov_id=document.getElementById("prov_id").value;
+	var region=document.getElementById("region").value;
+	var os=document.getElementById("os").value;
+	//alert(region+os);	
+	
+	//location.href='http://127.0.0.1:8083/?region='+region+'&os='+os;
+   var data = {};
+   data.region = region;
+   data.os = os;
+   $.ajax({
+     type: 'GET',
+     datatype: 'jsonp',
+     data: JSON.stringify(data),
+     contentType: 'application/json',
+     url: 'http://127.0.0.1:8083/', //node.js server is running
+     success: function(data) {
+       alert("success");
+
+     }
+	 });
+
+	
+
+}
+</script>
+
+</head>
+<body>
+<header>
+<img src="logo.png" height="140px" width="140px"/>	
+</header>
+
+<div id="header_content">
+<font color="#FFFFFF">Provisioning</font>
+</div>
+<div class="content">
+
+	<div id="left_part">
+	<ul><font size="5">
+		<li><a href="">AWS</a></li>
+		<li><a href="">Azure</a></li>
+		<li><a href="">OpenStack</a></li>
+		<li><a href="">HP Helion</a></li>
+		<li><a href="">SoftLayer</a></li></font>
+	</ul>
+	</div>		
+</div>
+<div id="table_content">
+		<h3><u>Instance Details</u></h3>
+		<table border="1" class="new_table">
+		<tr>
+			<th>inst_name</th>
+			<th>vcpu</th>	
+			<th>Memory_gib</th>
+			<th>Storage</th>
+			<th>Processor</th>
+			<th>Clock Speed</th>
+			<th>Network Performance</th>
+			 <th>select</th> 
+		</tr>
+</table>	
+</div>
+<div class="fill">
+
+<form>
+	<select id="region" name="region" class="region"></select>
+	<select id="os" name="os" class="os"></select>	
+	<input type="button" value="search" class="fil_search" onclick="myFunction()"/>
+	</form>
+</div>
+<footer>
+
+<font color="#FFFFFF">Follow us:</font>
+</footer>
+
+</body>
+</html>

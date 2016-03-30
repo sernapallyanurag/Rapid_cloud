@@ -1,0 +1,203 @@
+div.center
+{
+	border : 1px;
+	margin-top:1px;
+	height : 632px;
+	width : 1044px;
+	float: right;
+}
+
+
+div.center_left
+{
+	border: 0px;
+	border-style: solid;
+	height : 698px;
+	margin-top:0px;
+	margin-left:0px;
+	width : 522px;
+	float: right;
+	box-shadow: -10px 0px 10px 1px #888888;
+	
+}
+
+div.center_right
+{
+	border: 1px;
+	@border-style: solid;
+	height : 632px;
+	margin-top:0px;
+	width : 520px;
+	margin-left:0px;
+	float: left;
+	
+}
+
+table.deploy_table
+{
+	border: 0;
+	margin-top: 50px;
+	margin-bottom:50px;
+	margin-left:10px;
+	border-collapse: collapse;
+	@border-color : #d3d3d3;
+	@width:100%;
+}
+
+table.center_left_table1
+{
+	cellpadding:0;
+	cellspacing:0;
+	border-collapse: collapse;
+	border:0;
+	border-width: 0;
+}
+
+
+table.center_left_table2
+{
+	cellpadding:0;
+	cellspacing:0;
+	border-collapse: collapse;
+	border: none;
+	margin-top:10px;
+	width:100%;
+}
+
+div.network_region
+{
+	border:1px;
+	border-style:solid;
+	margin-top:210px;
+	margin-left:528px;
+	height:150px;
+	width:510px;
+}
+
+table.network_region
+{
+
+	margin-top:10px;
+
+}
+
+input.deploybutton
+{
+	position:absolute;
+	margin-top:100px;
+	background-color:#d9271d;
+	height: 40px;
+	margin-left: 250px;
+	color:white;
+}
+
+input.createbutton
+{
+	position:absolute;
+	margin-top:100px;
+	background-color:#d9271d;
+	height: 40px;
+	margin-left: 100px;
+	color:white;
+}
+
+#deployform
+{
+	position : absolute;
+	margin-top: 20px;
+	margin-left: 30px;
+}
+
+table.deploy_table th{
+	text-align: center;
+	width:200px;
+	height: 30px;
+	font-size:18px;
+}
+
+table.deploy_table td{
+	text-align: center;
+	width:200px;
+	height: 30px;
+	font-size:17px;
+}
+
+table.center_left_table1 td{
+	height: 30px;
+	text-align:left;
+	font-size:17px;
+}
+
+table.center_left_table2 td{
+	height: 30px;
+	text-align:center;
+	font-size:16px;
+}
+
+table.center_left_table2 th{
+	background-color:honeydew;
+	font-size:17px;
+	width:100px;
+}
+
+table.deploy_table tbody:nth-child(even) 
+{
+    background-color: #eee;
+    
+}
+table.deploy_table tbody:nth-child(odd) 
+{
+   background-color:#fff;
+  
+}
+
+table.center_left_table2 tr:nth-child(even) 
+{
+    background-color: #eee;
+    
+}
+table.center_left_table2 tr:nth-child(odd) 
+{
+   background-color:#fff;
+  
+}
+
+table.network_region td
+{
+	width:120px;
+	height: 30px;
+	font-size:17px;
+	font-weight:bold;
+}
+
+div.extreme_left{
+	width:210px;
+	height:699px;
+	float:left;
+	background-color:#d3d3d3;
+	box-shadow: 10px 0px 10px #888888;
+}
+
+
+table.deploy_table tr {
+    cursor: pointer;
+}
+
+table.deploy_table tr:hover {
+    background-color: #bfbfbf;
+}
+
+table.azure_cloud td
+{
+	width:150px;
+	height: 30px;
+	font-size:17px;
+	font-weight:bold;
+}
+
+div#deploytable
+{
+	width:450px;
+	height:250px;
+	overflow:scroll;
+}

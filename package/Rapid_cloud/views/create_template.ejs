@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html ng-app>
+<title>RapidCloud</title>
+<link href="bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="css_1/style.css" rel="stylesheet"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+<script src="javascript_1/bootstrap.min.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<body id="bg">
+<div class="alertS">
+	<div class="alert alert-success" role="alert"><b>Message !!</b> Template is stored successfully.<span class="glyphicon glyphicon-remove-circle closeAlert closeMsg"></span></div>
+	<div class="alert alert-info" role="alert"><b>Heads up!</b> This alert needs your attention, but it's not super important.<span class="glyphicon glyphicon-remove-circle closeAlert"></span></div>
+	<div class="alert alert-warning" role="alert"><b>Warning!</b> Template name should not contain space and special character !@#$%^&*<span class="glyphicon glyphicon-remove-circle warning closeAlert"></span></div>
+	<div class="alert alert-warning description" role="alert"><b>Warning!</b> Description should not contain special character !@#$%^&*<span class="glyphicon glyphicon-remove-circle warning closeAlert"></span></div>
+	<div class="alert alert-danger" role="alert"><b>Alert!!</b> At least one Role should be there <span class="glyphicon glyphicon-remove-circle closeAlert closeError"></span></div>
+</div>
+	<div class="container">
+<div class=	"header-sec">
+		<header role="header">
+			<a href="#"> <img src="images_1/RapidCloud_Logo.png" /> </a> <span class="header-txt"> Manage, Govern and Optimize your Cloud Environments </span>
+			<img src="images_1/Sonata_Logo.png" class="second-logo"/>
+			<ul>
+				<li><span class="glyphicon glyphicon-bell"></span></li>
+				<li><span class="glyphicon glyphicon-envelope"></span></li>
+				<li><span class="glyphicon glyphicon-question-sign"></span></li>
+				<li><span class="glyphicon glyphicon-cog"></span></li>
+			</ul>
+		</header>
+		</div>
+		<aside class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+			<section role="aboutProject">
+				<br>
+				<img src="images_1/profile_pic.png" />
+				<h1>Andreq M.Hammonds <span class="glyphicon glyphicon-chevron-down arrowRed"></span></h1>
+				<br>
+			</section>
+			<menu role="profileLinks">
+				<ul>
+					<li>Sign in as User</li>
+					<li>My Account</li>
+					<li>Sign Out</li>
+				</ul>
+			</menu>
+			<nav role="naviGation">
+				<ul>
+					<li class="naee"><a href="" class="activeTab">Design <span class="glyphicon glyphicon-chevron-down arrowGray rotateGray"></span></a>
+						<dl>
+							<dt class="activeLink" id="Templates1">Templates</dt>
+							<dt id="Node1">Node</dt>
+							<dt>Blueprints</dt>
+							<dt>Networks</dt>
+							<dt>Load Balancers</dt>
+						</dl>
+					</li>
+					<li class="naee"><a href="">Deploy<span class="glyphicon glyphicon-chevron-down arrowGray"></span></a>
+						<dl>
+							<dt>Deploy Option 1</dt>
+							<dt>Deploy Option 2</dt>
+							<dt>Deploy Option 3</dt>
+							<dt>Deploy Option 4</dt>
+						</dl>
+					</li>
+					<li class="naee"><a href="">Manage<span class="glyphicon glyphicon-chevron-down arrowGray"></span></a>
+						<dl>
+							<dt>Manage Option 1a</dt>
+							<dt>Manage Option 2a</dt>
+							<dt>Manage Option 3a</dt>
+							<dt>Manage Option 4a</dt>
+						</dl>
+					</li>
+					<li class="naee"><a href="">Monitor<span class="glyphicon glyphicon-chevron-down arrowGray"></span></a>
+						<dl>
+							<dt>Monitor Option 1b</dt>
+							<dt>Monitor Option 2b</dt>
+							<dt>Monitor Option 3b</dt>
+							<dt>Monitor Option 4b</dt>
+						</dl>
+					</li>
+					<li class="naee"><a href="">Projects<span class="glyphicon glyphicon-chevron-down arrowGray"></span></a>
+						<dl>
+							<dt>Projects Option 1c</dt>
+							<dt>Projects Option 2c</dt>
+							<dt>Projects Option 3c</dt>
+							<dt>Projects Option 4c</dt>
+						</dl>
+					</li>
+				</ul>
+			</nav>
+		</aside>
+			<section class="col-xs-12 col-sm-10 col-md-10 col-lg-10" role="contentArea">
+			<header>
+				<h1>Create Templates <a href=""><span class="glyphicon glyphicon-plus-sign" onclick="createTem(this)" id="addRole" style="color:#999999;"></span></a></h1>
+			</header>
+			<section role="createTemplate">
+				<div class="roles" id="roleAdded">
+					<div class="row" id="templateConta">					
+					</div>
+				</div>
+				<div class="roles1" id="roleAdded1">
+					<div class="row1" id="templateConta1">					
+					</div>
+				</div>
+
+				
+				<!--<div class="roles" style="background-color:#fff;padding:0px;">
+					<div class="row">
+					  <div class="roleID">
+						<div class="pull-left">
+							<label class="labelTemp">Project Name</label>
+							<div class="clickRole">
+								<span class="proJetName">Select</span>
+								<ul style='' class="dropDown">
+									<li onclick="dataUpDate(this)">
+										<dl>
+										  <dt>&nbsp;</dt>
+										  <dd>TUI</dd>
+										</dl>
+									</li>
+									<li onclick="dataUpDate(this)">
+										<dl>
+										  <dt>&nbsp;</dt>
+										  <dd>Microsoft</dd>
+										</dl>
+									</li>									
+								</ul>							
+								<span class="glyphicon glyphicon-chevron-down pull-right" style="padding-top:3px;"></span>
+								</div>						
+							</div>
+						</div>
+						
+						<div class="roleAttID">
+							<div class="pull-left">
+								<label class="labelTemp">Product Name</label>
+								<div class="clickRole">
+									<span class="proJetType">Select</span>
+									<ul style='' class="dropDown">
+										<li onclick="dataUpDate1(this)">
+											<dl>
+											  <dt>&nbsp;</dt>
+											  <dd>TUI</dd>
+											</dl>
+										</li>
+										<li onclick="dataUpDate1(this)">
+											<dl>
+											  <dt>&nbsp;</dt>
+											  <dd>Microsoft</dd>
+											</dl>
+										</li>
+										<li onclick="dataUpDate1(this)">
+											<dl>
+											  <dt>&nbsp;</dt>
+											  <dd>Windows</dd>
+											</dl>
+										</li>
+									</ul>							
+									<span class="glyphicon glyphicon-chevron-down pull-right" style="padding-top:3px;"></span>
+									</div>						
+							</div>
+						</div>
+					
+						<div class="">
+							<div class="pull-left">
+								<label class="labelTemp">Techonology</label>
+								<div class="clickRole">
+									<span class="projectTech">Select</span>
+									<ul style='' class="dropDown">
+										<li onclick="dataUpDate2(this)">
+											<dl>
+											  <dt>&nbsp;</dt>
+											  <dd>Java</dd>
+											</dl>
+										</li>
+										<li onclick="dataUpDate2(this)">
+											<dl>
+											  <dt>&nbsp;</dt>
+											  <dd>.NET</dd>
+											</dl>
+										</li>
+										<li onclick="dataUpDate2(this)">
+											<dl>
+											  <dt>&nbsp;</dt>
+											  <dd>PHP</dd>
+											</dl>
+										</li>
+									</ul>							
+									<span class="glyphicon glyphicon-chevron-down pull-right" style="padding-top:3px;"></span>
+									</div>						
+							</div>
+						</div>-->
+						<div class="operatingSys">
+							<div class="pull-left">
+								<label class="labelTemp">Template Name</label>
+								<div class="clickRole" style="width:293px;">
+									<input type="text" id="t_name" style="border:none;width:100%;">
+								</div>
+							</div>
+						</div>
+						<div class="pull-right">							
+						</div>
+						<div class="tempalteNote">
+							 <textarea id="t_desc" rows="4" cols="" placeholder="Note" ></textarea>
+							 <span>0/180</span>
+						</div>
+						<div class="templateCreateButtons">
+							<button id="create_exit" onclick="saveTemplateInformation(this.id);">Create & Exit</button>
+							<button id="save_exit" onclick="saveTemplateInformation(this.id);">Save & Next</button>
+							<br><br>
+						</div>
+					</div>
+				</div>
+			</section>
+		</section>
+		<footer>
+			<a href="#">Home</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">Terms of use</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">Offerings</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">Blog</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">Wiki</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">Contact us</a>
+			<span style="float:right;"><img src="images_1/Social_icons.png" /></span>
+		</footer>
+	</div>
+<script src="javascript_1/create_temp.js"></script>
+</body>
+</html>

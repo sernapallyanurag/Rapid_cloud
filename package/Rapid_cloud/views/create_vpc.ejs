@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+<link rel="stylesheet" type="text/css" href="/stylesheets/next_style.css">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+window.onload = function () {
+    var url = document.location.href,
+        params = url.split('?')[1].split('&'),
+        data = {}, tmp;
+    for (var i = 0, l = params.length; i < l; i++) {
+         tmp = params[i].split('=');
+         data[tmp[0]] = tmp[1];
+    }
+	var str = data.store;
+	var store1 = str.replace(/%20/g, " ");
+	var str1 = data.cpu;
+	var store2 = str1.replace(/%20/g, " ");
+    document.getElementById('prov_id').value = data.prov_id;
+	document.getElementById('vcpu').value = data.vcpu;
+	document.getElementById('mem').value = data.mem;
+	document.getElementById('store').value = store1;
+	document.getElementById('cpu').value = store2;	
+}
+</script>
+<script>
+
+function myFunction() {
+	//alert("working");
+    var region=document.getElementById("region").value;
+	var cidr=document.getElementById("cidr").value;
+	var vpc=document.getElementById("vpc").value;
+	var tenancy=document.getElementById("tenancy").value;
+	
+	var data={};
+	data.region = region;
+	data.cidr = cidr;
+	data.vpc = vpc;
+	data.tenancy = tenancy;
+	
+	$.ajax({
+        type: 'POST',
+   	 jsonpCallback: "callback",
+        datatype: 'jsonp',
+        data: data,
+   	 //contentType: 'application/json',
+        url: 'http://172.29.59.63:3000/vpc',
+        success: function(data, textStatus){
+        	},
+        	 error: function (xhr, status, error){
+                 console.log('Failure');
+         		alert("failure");
+         		},
+            });	
+	
+	//location.href='http://172.29.59.65/vpc?region='+region+'&cidr='+cidr+'&vpc='+vpc+'&tenancy='+tenancy;
+	//return true;
+		
+}
+</script>
+<style type="text/css">
+    div.formLayout
+    {
+		margin-top:50px;
+        @background-color: #f3f3f3;
+        @border: solid 1px #a1a1a1;
+        padding: 10px;
+        width: 400px;
+    }
+    
+    div.formLayout label, div.formLayout input
+    {	margin-top:5px;
+		font-weight: bold;
+        display: block;
+        width: 150px;
+        float: left;
+        margin-bottom: 10px;
+		padding:4px;
+    }
+ 
+    div.formLayout label
+    {
+        text-align: right;
+        padding-right: 20px;
+    } 
+    br
+    {
+        clear: left;
+    } 
+	form.form2
+	{
+		margin-top:20px;
+	}
+	.button 
+	{
+		padding:5px;
+		color: #fff;
+		background-color: #F00000;
+		font-weight: bold;
+		font-size: 100%;
+		width:100px;
+	}
+    </style>
+
+
+</head>
+<body>
+<header>
+<img src="/stylesheets/logo.png" height="140px" width="140px"/>	
+</header>
+
+<div id="header_content">
+<font color="#FFFFFF">Provisioning</font>
+</div>
+<div class="content">
+
+	<div id="left_part">
+	<ul><font size="5">
+		<li><a href="next_page.html">AWS</a></li>
+		<li><a href="">Azure</a></li>
+		<li><a href="">OpenStack</a></li>
+		<li><a href="">HP Helion</a></li>
+		<li><a href="">SoftLayer</a></li></font>
+	</ul>
+	</div>	
+
+	
+</div>
+<div class="form1" align="center" >
+
+ <div class="formLayout">
+ <form name="form">
+        <label>Region</label>
+		<select id="region">
+		<option value="ap-northeast-1">Asia Pacific (Tokyo)</option>
+		<option value="ap-southeast-1">Asia Pacific (Singapore)</option>
+		<option value="ap-southeast-2">Asia Pacific (Sydney)</option>
+		<option value="eu-central-1">EU (Frankfurt)</option>
+		<option value="eu-west-1">EU (Ireland)</option>
+		<option value="sa-east-1">South America (Sao Paulo)</option>
+		<option value="us-east-1">US East (N. Virginia)</option>
+		<option value="us-west-1">US West (N. California)</option>
+		<option value="us-west-2">US West (Oregon)</option>
+		</select> </br>   
+        <label>CIDR Block</label>
+        <input type="text" id="cidr"><br>
+        <label>VPC Name</label>
+        <input type="text" id="vpc"><br>
+        <label>Tenancy</label>
+        <select id="tenancy">
+		<option value="default">Default</option>
+		<option value="dedicated">Dedicated</option>
+		</select><br><br>	
+ </form>
+		
+</div>
+<form class="form2">
+		<input class="button" type="button" value="Create" onclick="myFunction()"/>	
+		<input class="button" type="reset" value="Cancel"/><br>
+</form>
+</div>
+
+
+<footer>
+
+<font color="#FFFFFF">Follow us:</font>
+</footer>
+
+</body>
+</html>

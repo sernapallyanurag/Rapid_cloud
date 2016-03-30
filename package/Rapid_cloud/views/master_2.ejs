@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html ng-app>
+<title>RapidCloud</title>
+<link href="bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="css_1/style.css" rel="stylesheet"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+<script src="javascript_1/bootstrap.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<body id="bg">
+	<div class="container">
+<div class=	"header-sec">
+		<header role="header">
+			<a href="#"> <img src="images_1/RapidCloud_Logo.png" /> </a> <span class="header-txt"> Manage, Govern and Optimize your Cloud Environments </span>
+			<img src="images_1/Sonata_Logo.png" class="second-logo"/>
+			<ul>
+				<li><span class="glyphicon glyphicon-bell"></span></li>
+				<li><span class="glyphicon glyphicon-envelope"></span></li>
+				<li><span class="glyphicon glyphicon-question-sign"></span></li>
+				<li><span class="glyphicon glyphicon-cog"></span></li>
+			</ul>			
+		</header>
+		</div>
+		<aside class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+			<section role="aboutProject">
+				<br>
+				<img src="images_1/profile_pic.png" />
+				<h1>Andreq M.Hammonds <span class="glyphicon glyphicon-chevron-down arrowRed"></span></h1>
+				<br>
+			</section>
+			<menu role="profileLinks">
+				<ul>
+					<li>Sign in as User</li>
+					<li>My Account</li>
+					<li>Sign Out</li>
+				</ul>
+			</menu>
+			<nav role="naviGation">
+				<ul>
+					<li><a href="#">Design <span class="glyphicon glyphicon-chevron-down arrowGray rotateGray"></span></a>
+						<dl>
+							<dt class="activeLink" id="Templates">Templates</dt>
+							<!--<dt id="Node">Node</dt>-->
+							<dt>Blueprints</dt>
+							<dt>Networks</dt>
+							<dt>Load Balancers</dt>
+						</dl>
+					</li>
+					<li><a href="#">Deploy<span class="glyphicon glyphicon-chevron-down arrowGray"></span></a>
+						<dl>
+							<dt>Deploy Option 1</dt>
+							<dt>Deploy Option 2</dt>
+							<dt>Deploy Option 3</dt>
+							<dt>Deploy Option 4</dt>
+						</dl>
+					</li>
+					<li><a href="#">Manage<span class="glyphicon glyphicon-chevron-down arrowGray"></span></a>
+						<dl>
+							<dt id="manageEnv">Manage Environment</dt>
+							<!--<dt>Manage Option 2a</dt>
+							<dt>Manage Option 3a</dt>
+							<dt>Manage Option 4a</dt>-->
+						</dl>
+					</li>
+					<li><a href="#">Monitor<span class="glyphicon glyphicon-chevron-down arrowGray"></span></a>
+						<dl>
+							<dt>Monitor Option 1b</dt>
+							<dt>Monitor Option 2b</dt>
+							<dt>Monitor Option 3b</dt>
+							<dt>Monitor Option 4b</dt>
+						</dl>
+					</li>
+					<li><a href="#">Projects<span class="glyphicon glyphicon-chevron-down arrowGray"></span></a>
+						<dl>
+							<dt>Projects Option 1c</dt>
+							<dt>Projects Option 2c</dt>
+							<dt>Projects Option 3c</dt>
+							<dt>Projects Option 4c</dt>
+						</dl>
+					</li>					
+				</ul>
+			</nav>
+		</aside>
+		<section class="col-xs-12 col-sm-10 col-md-10 col-lg-10" role="contentArea" id="view_temp">
+			<header>
+				<h1>View Templates</h1>
+				<aside>
+					<input type="text" placeholder="Search Template" id="search" name="q">
+					<button id="create_temp" onclick="http://172.29.59.65:3000/create_template">Create Template</button>
+				</aside>
+			</header>		
+			<section role="templatesFilter">
+				<ul>
+					<li><label><input type="radio" checked="checked" name="filter" value="ATemplates" />All</label></li>
+					<li><label><input type="radio" name="filter" value="MTemplates" />My Templates</label></li>
+					<li><label><input type="radio" value="GTemplates"  name="filter" />Generic Templates</label></li>
+					<li><label><input type="radio" value="STemplates" name="filter" />System Templates</label></li>
+				</ul>
+			</section>
+			<section role="template">
+			
+			</section>
+		</section>
+		
+		<!--<section class="col-xs-12 col-sm-10 col-md-10 col-lg-10" role="contentArea" id="single_node">
+			<header>
+				<h1>View Nodes</h1>
+				<aside>
+					<input type="text" placeholder="Search Nodes" id="search1">					
+				</aside>
+			</header>		
+			<section role="templatesFilter">
+				<ul>
+					<li><label><input type="radio" checked="checked" name="filter1" value="ATemplates" />All</label></li>
+					<li><label><input type="radio" name="filter1" value="MTemplates" />AWS</label></li>
+					<li><label><input type="radio" value="GTemplates"  name="filter1" />Azure</label></li>
+				</ul>
+			</section>
+			<section role="template1">
+			
+			</section>
+		</section>-->
+		
+		<footer>
+			<a href="#">Home</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">Terms of use</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">Offerings</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">Blog</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">Wiki</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">Contact us</a>
+			<span style="float:right;"><img src="images_1/Social_icons.png" /></span>
+		</footer>
+	</div>
+</body>
+<script src="javascript_1/js.js"></script>
+<script src="javascript_1/menu.js"></script>
+<script src="javascript_1/node.js"></script>
+</html>

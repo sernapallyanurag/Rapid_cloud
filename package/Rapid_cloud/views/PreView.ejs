@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet" type="text/css" href="/stylesheets/stand_temp.css">
+<link rel="stylesheet" type="text/css" href="/stylesheets/tmplt_create.css">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<script>
+$(document).ready(function() {
+ $('#template').hide(); 
+  $('#nodes').hide();
+  
+  $('#create').click(function() {
+   $('#template').show();
+   });
+   
+    $('#button1').click(function() {
+				   $('#nodes').show();
+				   }); 
+   
+ });
+</script>
+
+<script>
+var imag = [];
+var inty = [];
+var role = [];
+var osf = [];
+var count = 0;
+function description(el){
+//alert(el);
+var tname = $(el).closest("tr").find('td:eq(0)').text();
+$('tbody.ins_det').empty(); 
+//var tname = document.getElementById("temp_name").innerText;
+//alert(tname);
+var nodes = <%- JSON.stringify(data) %>;
+var i;
+var len=nodes.length;
+
+var temarr=[];
+//alert(len);
+for (i=0;i<len;i++)
+{
+if (nodes[i].template_name == tname){
+temarr = [nodes[i].template_name,nodes[i].template_id, nodes[i].Environment, nodes[i].region, nodes[i].cloud, nodes[i].instances, nodes[i].des, nodes[i].VMs, nodes[i].created_at];
+var instnew = nodes[i].instances 
+}
+}
+$('tr#temname td.tempname').text(temarr[0]);
+$('tr#temid td.tempid').text(temarr[1]);
+$('tr#temenv td.tempenv').text(temarr[2]);
+$('tr#temreg td.tempreg').text(temarr[3]);
+$('tr#tempro td.temppro').text(temarr[4]);
+$('tr#temdes td.tempdes').text(temarr[6]);
+$('tr#temvm td.tempvm').text(temarr[7]);
+$('tr#temdate td.tempdate').text(temarr[8]);
+
+var lengt=instnew.length;
+alert(lengt);
+//alert(instnew[0].image_id);
+for (k=0;k<lengt;k++)
+{
+imag[k]=instnew[k].image_id;
+inty[k]=instnew[k].instance_type;
+role[k]=instnew[k].role;
+osf[k]=instnew[k].OS_family;
+
+}
+for (var m=0;m<lengt;m++)
+{
+	tr_newins = $('<tr/>');
+            tr_newins.append("<td>" + imag[m] + "</td>");
+            tr_newins.append("<td>" + inty[m] + "</td>");
+            tr_newins.append("<td>" + role[m] + "</td>");
+            tr_newins.append("<td>" + osf[m] + "</td>");
+            $('table.instance').append(tr_newins);
+			/*tr_new.text("<td>" + img_array[m] + "</td>");  
+			tr_new.text("<td>" + role_array[i] + "</td>");
+			tr_new.append("<td><input type='checkbox' name='select'></input></td>");*/
+          
+        }
+
+//alert(imag);
+
+var leng=temarr.length;
+//alert(leng);
+
+
+//$('li#newpara').text(li);
+}
+</script>
+<script type="text/javascript">
+var values = [];
+function getprovider(check){
+	
+	for (i = 0; i < check.length; i++) {
+        if (check[i].checked == true) {
+            values.push(check[i].value);
+        }
+    }
+    //alert(values);
+    
+   
+$.ajax({
+
+type: 'POST',
+
+jsonpCallback: "callback",
+
+datatype: 'jsonp',
+
+data: "d1="+values,
+//data: values,
+
+//contentType: 'application/json',
+
+url: 'http://172.29.59.62:3000/viewdata',
+
+success: function(results) {
+//alert(results[0].cloud);
+var len=results.length;
+//alert(len);
+var tr_spec;
+$('tbody.spec').empty();
+for (var j=0; j<len;j++)
+{
+	tr_spec=$('<tr onClick = "description(this)"/>');
+			tr_spec.append("<td>" + results[j].template_name + "</td>");
+            tr_spec.append("<td>" + results[j].cloud + "</td>");
+            tr_spec.append("<td>" + results[j].region + "</td>");
+            tr_spec.append("<td>" + results[j].VMs + "</td>");            
+             $('tbody.spec').append(tr_spec);
+}
+},
+
+error: function (xhr, status, error){
+
+console.log('Failure');
+
+//alert("failure");
+
+},
+
+});
+   
+}
+
+</script>
+
+<style>
+div.formLayout
+{		
+	position: fixed;
+	background: ghostwhite;
+	@margin-left : 300px;
+	@margin-top : 90px;
+	width : 1250px;
+}
+#header_content1 {	
+    background: #d9271d;
+    padding: 20px; 
+    width: 1225px;
+    height: 20px;
+	@font-family:"Times New Roman";
+	@font-size:180%;	
+}
+
+#Nodes{
+	margin-left : 780px;
+}
+.button,.cancel
+	{
+		margin-left:10px;
+		padding:5px;
+		color: #fff;
+		background-color: #F00000;
+		font-weight: bold;
+		font-size: 100%;
+		width:100px;
+	}
+.save
+	{
+		margin-left:500px;
+		padding:5px;
+		color: #fff;
+		background-color: #F00000;
+		font-weight: bold;
+		font-size: 100%;
+		width:100px;
+	}
+#Provider,#region1
+	{
+		width:150px; 
+		height: 25px
+	}
+#cld,#rgn,#tname,#tdesc
+	{
+		font-size: 120%;	
+	}
+</style>
+<body>
+<header>
+<img src="/stylesheets/logo.png" height="71px" width="372px"/>	
+</header>
+<div id="header_content1">
+<div id="menu" class="menu">
+<form id="menus" class="menus">
+		<div id="nav">
+		<ul>		
+		<li><a href="#">Template</a>
+		<ul>
+
+			<li><a href="http://172.29.59.62:3000/PreView">View</a></li>
+			<li><a href="http://172.29.59.62:3000/new_template" id="create">Create</a></li>			
+			<li><a href="http://172.29.59.63:3000/deploy">Deploy</a></li>		
+			<li><a href="#">View</a></li>
+			<li><a href="http://172.29.59.65:3000/new_template" id="create">Create</a></li>			
+			<li><a href="http://172.29.59.61:3000/deploy">Deploy</a></li>		
+			<li><a href="172.29.59.61:3000/manage_env">Manage</a></li>		
+		</ul>
+		</li>
+		<li><a href="#">Project</a>
+		<ul>
+			<li><a href="#">Create</a></li>
+			<li><a href="#">view</a></li>						
+		</ul>
+		</li>
+		<li><a href="#">Blueprint</a>
+		<ul>
+			<li><a href="#">Create</a></li>
+			<li><a href="#">view</a></li>
+			<li><a href="#">Deploy</a></li>			
+		</ul>
+		</li>
+		<li><a href="#">About</a>
+		<ul>
+			<li><a href="#">News</a></li>
+			<li><a href="#">Contact</a></li>			
+		</ul>
+		</li>		
+		</ul>
+		</div>
+	</form>
+</div>
+</div>
+<div class="formLayout" id="formLayout">
+<div class="extleft" id="extleft">
+<p style="font-weight:bold;font-size:17px;">Select Cloud</p>
+<table id="provider" class="provider">
+<tr>
+	<td><input type="checkbox" name="AWS" Value="AWS"></td>
+	<td> AWS </td>
+</tr>
+<tr>
+	<td><input type="checkbox" name="Azure" Value="Azure"></td>
+	<td> Azure </td>
+</tr>
+<tr>
+	<td><input type="checkbox" name="HP Helion" Value="HP Helion"></td>
+	<td> HP Helion </td>
+</tr>
+<tr>
+	<td><input type="checkbox" name="Softlayer" Value="Softlayer"></td>
+	<td> Softlayer </td>
+</tr>
+<tr>
+	<td><input type="checkbox" name="OpenStack" Value="OpenStack"></td>
+	<td> OpenStack </td>
+</tr>
+</table>
+<br/>
+<input type="button" value="Search" onclick="getprovider(document.getElementsByTagName('input'))"></input>
+</div>
+			<div class="center">
+				<div class="center_right">
+					<select id="relevance" class="relevance">
+						<option value="All">All</option>
+						<option value="Latest">Latest</option>
+  						<option value="Top Rated">Top Rated</option>
+  						<option value="Oldest">Oldest</option>
+  					</select>
+					<div id="types" class="types">
+					<form id="type" class="type">
+						<div id="nav">
+						<ul>
+							<li><a href="#">My Environment</a></li>
+							<li><a href="#">System Environment</a></li>
+							<li><a href="#">Public Environment</a></li>
+							<li><a href="#">Generic Environment</a></li>
+						</ul>
+						</div>
+					</form>
+					</div>
+</br>
+
+					<div class="scroll">
+					<div id="predef" class="predef" >
+						<table  id="define" class="define">
+						<thead>
+							<tr>
+							<th>Template Name</th>
+							<th>Provider</th>
+							<th>Region</th>
+							<th>Images</th>
+							</tr>
+							</thead>
+					
+					<tbody id="spec" class="spec">
+						<% data.forEach(function(data) { %>
+						<tr onClick = "description(this)">
+						<td><%= data.template_name %></td>
+						<td><%= data.cloud %></br></td>
+						<td> <%= data.region %></br></td>
+						<td><%= data.VMs %></br></td>
+						</tr>
+						<% }); %>
+					</tbody>
+						</table>
+				</div>
+				</div>
+				</div>
+				
+<div class="center_left">
+<div class="scrollbar">
+
+<h2 align="center"><i>Template Description</i></h2>
+<table id="descp" class="descp">
+<tr id="temname">
+	<th>Template Name :</th>
+	<td class="tempname"></td>
+</tr>
+<tr id="temid">
+	<th>Template Id :</th>
+	<td class="tempid"></td>
+</tr>
+<tr id="temenv">
+	<th>Environment :</th>
+	<td class="tempenv"></td>
+</tr>
+<tr id="temreg">
+	<th>Region :</th>
+	<td class="tempreg"></td>
+</tr>
+<tr id="tempro">
+	<th>Provider :</th>
+	<td class="temppro"></td>
+</tr>
+<tr id="temdes">
+	<th>Description :</th>
+	<td class="tempdes"></td>
+</tr>
+	<tr id="temvm">
+	<th>VMs :</th>
+<td class="tempvm"></td>
+</tr>
+<tr id="temdate">
+	<th>Created at :</th>
+<td class="tempdate"></td>
+</tr>
+</table>
+<table class="instance" id="instance">
+<caption><u><b>Instance Details</u></b></caption>
+<thead>
+	<th><b>Image Id</b></th>
+	<th><b>Instance Type</b></th>
+	<th><b>Role</b></th>
+	<th><b>OS Family</b></th>
+</thead>
+<tbody class="ins_det">
+</tbody>
+</table>
+<div id="action" class="action">
+<input type="button" value="Deploy"></input>
+<input type="button" value="Modify"></input>
+<input type="button" value="Delete"></input>
+</div>
+</div>
+</div>
+</div>
+<footer>
+<font color="#FFFFFF">Follow us:</font>
+</footer>
+</div>
+</body>
+</html>

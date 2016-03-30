@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+<link rel="stylesheet" type="text/css" href="/stylesheets/next_style.css">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+window.onload = function () {
+    var url = document.location.href,
+        params = url.split('?')[1].split('&'),
+        data = {}, tmp;
+    for (var i = 0, l = params.length; i < l; i++) {
+         tmp = params[i].split('=');
+         data[tmp[0]] = tmp[1];
+    }
+	var str = data.store;
+	var store1 = str.replace(/%20/g, " ");
+	//var str1 = data.cpu;
+	//var store2 = str1.replace(/%20/g, " ");
+    document.getElementById('prov_id').value = data.prov_id;
+	document.getElementById('vcpu').value = data.vcpu;
+	document.getElementById('mem').value = data.mem;
+	document.getElementById('store').value = store1;
+	//document.getElementById('cpu').value = store2;	
+}
+</script>
+<script>
+
+function myFunction() {
+    var prov_id=document.getElementById("prov_id").value;
+	var vcpu=document.getElementById("vcpu").value;
+	var mem=document.getElementById("mem").value;
+	var store=document.getElementById("store").value;
+	//var cpu=document.getElementById("cpu").value;
+	var date=document.getElementById("date").value;
+	var proj_id=document.getElementById("pid").value;
+	var proj_name=document.getElementById("pname").value;
+	
+	var ck_prov_id=/^[a-zA-Z0-9][\w\.]+[a-zA-Z0-9]$/
+	var ck_vcpu=/^[0-9]{1}$/;
+	var ck_mem=/^[0-9]+(\.[0-9][0-9]?)?$/;
+	var ck_proj_id=/^[0-9]{5}$/;
+	
+	if(prov_id == null || prov_id == ""){
+		alert("Instance name not valid");
+	}	
+	if(!ck_vcpu.test(vcpu)){
+		alert("vcpu not valid");
+	}
+	if(mem == null || mem == ""){
+		alert("Memory not valid");
+	}
+	if(store == null || store == ""){
+		alert("Storage not valid");
+	}
+	/*if(cpu == null || cpu == ""){
+		alert(" Processor not valid");
+	}*/
+	if(date == null || date == ""){
+		alert(" Select the Date ");
+		form.date.focus();
+		return false;
+	}
+	if(!ck_proj_id.test(proj_id)){
+		alert("Project Id not valid");
+		form.pid.focus();
+		return false;
+	}
+	if(proj_name==null || proj_name==""){
+		alert("Project Name not valid");
+		form.pname.focus();
+	}else{
+		location.href='http://172.29.59.65:3000/create?prov_id='+prov_id+'&dt='+date+'&proj_id='+proj_id+'&proj_name='+proj_name;
+		return true;
+		}
+}
+</script>
+<style type="text/css">
+    div.formLayout
+    {
+		margin-top:50px;
+        @background-color: #f3f3f3;
+        @border: solid 1px #a1a1a1;
+        padding: 10px;
+        width: 400px;
+    }
+    
+    div.formLayout label, div.formLayout input
+    {	margin-top:5px;
+		font-weight: bold;
+        display: block;
+        width: 150px;
+        float: left;
+        margin-bottom: 10px;
+		padding:4px;
+    }
+ 
+    div.formLayout label
+    {
+        text-align: right;
+        padding-right: 20px;
+    } 
+    br
+    {
+        clear: left;
+    } 
+	form.form2
+	{
+		margin-top:20px;
+	}
+	.button 
+	{
+		padding:5px;
+		color: #fff;
+		background-color: #F00000;
+		font-weight: bold;
+		font-size: 100%;
+		width:100px;
+	}
+    </style>
+
+
+</head>
+<body>
+<header>
+<img src="/stylesheets/logo.png" height="71px" width="372px"/>	
+</header>
+
+<div id="header_content">
+<font color="#FFFFFF">Provisioning</font>
+</div>
+<div class="content">
+
+	<div id="left_part">
+	<ul><font size="5">
+		<li><a href=http://172.29.59.65:3000/next?prov_id=aws>AWS</a></li>
+		<li><a href=http://172.29.59.65:3000/next?prov_id=azure>Azure</a></li>
+		<li><a href="">OpenStack</a></li>
+		<li><a href="">HP Helion</a></li>
+		<li><a href="">SoftLayer</a></li></font>
+	</ul>
+	</div>	
+
+	
+</div>
+<div class="form1" align="center" >
+
+ <div class="formLayout">
+ <form name="form">
+        <label>Instance Type</label>
+		<input type="text" id="prov_id" readonly/><br>        
+        <label>VCPU</label>
+        <input type="text" id="vcpu" readonly/><br>
+        <label>Memory in Gib</label>
+        <input type="text" id="mem" readonly/><br>
+        <label>Storage</label>
+        <input type="text" id="store" readonly/><br>
+		<!--<label>Processor</label>
+        <input type="text" id="cpu" readonly/><br>-->
+		<label>Date</label>
+        <input type="Date" id="date" name="date" autofocus/><br>
+		<label>Project Id</label>
+        <input type="text" id="pid" name="pid"/><br>
+		<label>Project Name</label>
+        <input type="text" id="pname" name="pname"/><br><br>		
+ </form>
+		
+</div>
+<form class="form2">
+		<input class="button" type="button" value="Create" onclick="myFunction()"/>	
+		<input class="button" type="reset" value="Cancel"/><br>
+</form>
+</div>
+
+
+<footer>
+
+<font color="#FFFFFF">Follow us:</font>
+</footer>
+
+</body>
+</html>

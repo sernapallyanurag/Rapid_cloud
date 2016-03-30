@@ -1,0 +1,51 @@
+div.menu
+{
+	position:absolute;
+	z-index:9999;
+	margin-left : 300px;
+}
+
+#nav ul
+{
+	display:inline;
+	padding:0;
+	list-style:none;
+}
+#nav ul li
+{
+	
+	display:inline;
+	float:left;
+	text-align:center;
+	width:120px;
+	margin:1px;
+}
+#nav ul li a
+{
+	color:#fff;
+	text-decoration:none;
+	font-family:calibri;
+	background:#d9271d;
+	display:block;
+	padding:10px;
+}
+#nav ul li a:hover
+{
+	color:#000;
+}
+#nav ul li ul
+{
+	display:none;
+}
+#nav ul li:hover ul
+{
+	display:block;
+}
+
+#nodes {
+	position: absolute:
+	height: 550px;
+	width: 820px;	
+	@border:1px solid black;
+	@overflow:auto;
+}

@@ -1,0 +1,64 @@
+header{
+         
+}
+div.header {
+     
+    background: #d9271d ;
+    padding: 20px; 
+    width: 1231px;
+    height: 20px;
+     font-family:"Times New Roman";
+     font-size:180%;`           
+}
+div.content{
+     
+     background: #D8D8D8;
+     width: 1270px;
+     height:710px;
+}
+footer {   
+    background: #100000 ;
+    padding: 20px; 
+    width: 1231px;
+    height: 20px;
+     font-family:"Times New Roman";
+     font-size:180%;`           
+}
+div.img1
+{
+float:left;
+width:200px;
+height: 200px;
+border:1px solid black; 
+position:relative;
+top:120px;
+left:15px; 
+margin-left:40px;
+background:firebrick;
+} 
+
+img.allimg
+{
+width:200px;
+height:150px;
+/* margin-left:50px;
+margin-top:50px; */
+
+}
+
+input.idname
+{
+width:250px;
+height:50px;
+background:firebrick;
+}
+
+p.para
+{
+/* float:left;
+margin-left:70px;*/
+margin-top:10px; 
+text-align:center;
+color:white;
+font-size:130%;
+}

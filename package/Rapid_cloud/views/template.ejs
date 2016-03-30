@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+<link rel="stylesheet" type="text/css" href="/stylesheets/next_style.css">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<style type="text/css">
+    div.formLayout
+    {
+		margin-top:50px;
+        @background-color: #f3f3f3;
+        @border: solid 1px #a1a1a1;
+        padding: 10px;
+        width: 400px;
+    }
+    
+    div.formLayout label, div.formLayout input, div.formLayout select
+    {	margin-top:5px;
+		font-weight: bold;
+        display: block;
+        width: 150px;
+        float: left;
+        margin-bottom: 10px;
+		padding:4px;
+    }
+ 
+    div.formLayout label
+    {
+        text-align: right;
+        padding-right: 20px;
+    } 
+    br
+    {
+        clear: left;
+    } 
+	form.form2
+	{
+		margin-top:20px;
+	}
+	.button 
+	{
+		padding:5px;
+		color: #fff;
+		background-color: #F00000;
+		font-weight: bold;
+		font-size: 100%;
+		width:100px;
+	}
+    </style>
+<script>
+  var nodes = <%- JSON.stringify(data) %>;
+
+function myFunction() {
+	var tname=document.getElementById("tname").value;
+	
+	alert(nodes.length);
+	location.href="http://172.29.59.65:3000/tmplt_create"+"?data="+nodes+"&tmp_name="+tname;
+}
+</script>
+</head>
+<body>
+<header>
+<img src="/stylesheets/logo.png" height="71px" width="372px"/>	
+</header>
+<div id="header_content">
+<font color="#FFFFFF">Provisioning</font>
+</div>
+<div class="content">
+	<div id="left_part">
+	<ul><font size="5">
+		<li><a href=http://172.29.59.65:3000/next?prov_id=aws>AWS</a></li>
+		<li><a href=http://172.29.59.65:3000/next?prov_id=azure>Azure</a></li>
+		<li><a href="">OpenStack</a></li>
+		<li><a href="">HP Helion</a></li>
+		<li><a href="">SoftLayer</a></li></font>
+	</ul>
+	</div>	
+</div>
+<div class="form1" align="center" > 
+ <div class="formLayout">
+ <h2 align="left">Selected nodes are : </h2>
+  <form name="form">
+  <% data.forEach(function(data) { %>	
+	<label><%= data %></label>
+	<select>
+	  <option value="Dev">Development Environment</option>
+	  <option value="Build">Build Servers</option>
+	  <option value="Code">Code Repositories</option>
+	  <option value="Db">Small DataBases</option>
+	</select>
+	 <% }); %>
+  	<label>Enter Template Name</label>
+        <input type="text" id="tname" name="tname"/><br><br>  
+  </form>		
+</div>
+<form class="form2">
+		<input class="button" type="button" value="Create" onclick="myFunction()"/>	
+		<input class="button" type="reset" value="Cancel"/><br>
+</form>
+</div>
+<footer>
+<font color="#FFFFFF">Follow us:</font>
+</footer>
+</body>
+</html>

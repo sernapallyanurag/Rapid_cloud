@@ -1,0 +1,58 @@
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<!--<script src="table.js"></script> -->
+<script type="text/javascript">
+function test(el) {
+    var id = $(el).closest("tr").find('td:eq(0)').text();
+	alert(id);
+	//window.open('http://127.0.0.1:8081/?prov_id='+id);
+	//window.location.href='http://127.0.0.1:8081/?prov_id='+id;
+    //alert(id);
+}
+
+$.ajax({
+    url: 'http://127.0.0.1:8081/,
+    type: 'GET',
+    data: {
+        somevalue : 1,
+    },
+    success: function(msg) {
+           $('#content').html(msg);
+    }
+});
+</script> 
+</head>
+<body>
+
+
+<table id="table1" border="1">
+  <thead>
+    <tr>
+      <th>Instance type</th>
+      <th>Memory</th>
+	  <th>Select</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+     	 <td>t2.micro</td>
+      <td>120GB </td>
+      <td>
+        <input type="radio" name="prov" onclick="test(this);">Use</input>
+      </td>
+    </tr>
+    <tr>
+      <td>t2.small</td>
+      <td>180GB</td>
+      <td>
+          <input type="radio" name="prov" onclick="test(this);">Use</input>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div id="content">
+</div>
+</body>
+</html>

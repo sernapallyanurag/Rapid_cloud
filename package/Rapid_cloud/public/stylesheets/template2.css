@@ -1,0 +1,117 @@
+div.formLayout
+{	
+	position: absolute;
+	background: #D3D3D3 ;	
+	width : 1255px;	
+	overflow-x: hidden;
+}
+div.center_right
+{	
+	@height : 698px;
+	margin-top:0px;
+	margin-left:0px;
+	width : 450px;
+	float: right;
+	@box-shadow: -4px 0px 4px 1px #888888;			
+}
+
+div.center_left
+{
+	@height : 632px;
+	margin-top:0px;
+	width : 590px;
+	margin-left:0px;
+	float: left;	
+}
+
+#header_content1 {
+	
+    background: #d9271d;
+    padding: 20px; 
+    width: 1230px;
+    height: 20px;
+	@font-family:"Times New Roman";
+	@font-size:180%;	
+}
+footer.footer1 {	
+	margin-top:710px;
+    background: #100000 ;
+    padding: 20px; 
+    width: 1225px;
+    height: 20px;
+	font-family:"Times New Roman";
+	font-size:180%;
+}
+#Nodes{
+	margin-left : 780px;
+}
+.button,.cancel,.view
+	{
+		margin-left:10px;
+		padding:5px;
+		color: #fff;
+		background-color: #F00000;
+		font-weight: bold;
+		font-size: 100%;
+		width:100px;
+	}
+.add
+	{
+		margin-left:250px;
+		padding:5px;
+		color: #fff;
+		background-color: #F00000;
+		font-weight: bold;
+		font-size: 100%;
+		width:100px;
+	}
+.save
+	{
+		margin-left:100px;
+		padding:5px;
+		color: #fff;
+		background-color: #F00000;
+		font-weight: bold;
+		font-size: 100%;
+		width:100px;
+	}
+#Provider,#region1,#T_name,#desc,#image,#i_roles,#date
+	{
+		width:150px; 
+		height: 25px
+	}
+#image1{
+		width:290px; 
+		height: 25px;
+	
+}
+#cld,#rgn,#tname,#tdesc,#role,#s_date
+	{		
+		font-size: 110%;	
+	}
+	
+#table_content {
+    float: left;    
+	height: 420px;
+	width: 510px;	
+	@border:1px solid black;
+	overflow:auto;	
+} 	
+
+table.new_table, tr:nth-child(even) {
+    background-color: #eee;
+}
+table.new_table, tr:nth-child(odd) {
+   background-color:#fff;
+}
+table.new_table, td, th {
+    border: 0px solid black;
+}
+th {   
+    color: black;
+	@border: 1px solid green;
+	background-color: #f0e68c;
+}
+th, td {
+    padding: 5px;
+} 

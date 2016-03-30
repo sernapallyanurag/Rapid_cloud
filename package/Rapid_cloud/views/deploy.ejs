@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+<link rel="stylesheet" type="text/css" href="/stylesheets/deploy.css">
+<link rel="stylesheet" type="text/css" href="/stylesheets/tmplt_create.css">
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<script>
+$(document).ready(function() {
+ $('#template').hide(); 
+  $('#nodes').hide();
+  
+  $('#create').click(function() {
+   $('#template').show();
+   }); 
+   
+    $('#button1').click(function() {
+				   $('#nodes').show();
+				   }); 
+   
+ });
+</script>
+<script>
+window.onload=function(){
+
+	$('#deployform').hide();
+	$('table.network_region').hide();
+		$('table.azure_cloud').hide();
+	 $.get('http://172.29.59.65:3000/vpc_deploy', {}, function(results){
+	 
+	 var array = results.split('~');
+	 //alert(array);
+		 var vpc_name = array[0].split(',');
+		 //alert(vpc_name);
+		 var vpc_id = array[1].split(',');
+		 //alert(vpc_id);	
+			var testDdl = $('#vpc');
+			
+			for (var i = 0; i < vpc_name.length; i++) {
+			   var option = $("<option/>");
+			   option.attr("value", vpc_name[i]).text(vpc_name[i]);
+			   //option.attr("id", region[i]).text(region[i]);
+			   testDdl.append(option);
+			}
+		
+		  /* for (var i = 0; i < os.length; i++) {
+			   var option = $("<option/>");
+			   option.attr("value", os[i]).text(os[i]);
+			   testDd2.append(option);
+			} */      
+       
+   });
+   
+   $.get('http://172.29.59.65:3000/project', {}, function(results){
+	 	
+	        //alert(results);
+	        var p_name = results.split(',');
+	        //alert(p_name);	
+			var testDdp = $('#project');
+			
+			for (var i = 0; i < p_name.length; i++) {
+			   var option = $("<option/>");
+			   option.attr("value", p_name[i]).text(p_name[i]);
+			   //option.attr("id", region[i]).text(region[i]);
+			   testDdp.append(option);
+			}
+		    
+       
+   });
+   
+      $.get('http://172.29.59.65:3000/subnet_deploy', {}, function(results){
+	 	
+	       // alert(results);
+	        var subnet_name = results.split(',');
+	        //alert(p_name);	
+			var testDdp = $('#subnet');
+			
+			for (var i = 0; i < subnet_name.length; i++) {
+			   var option = $("<option/>");
+			   option.attr("value", subnet_name[i]).text(subnet_name[i]);
+			   //option.attr("id", region[i]).text(region[i]);
+			   testDdp.append(option);
+			}
+		    
+       
+   });
+}
+
+</script>
+
+<script type="text/javascript">
+var roles = [];
+var instances =[];
+var id1;
+var form_det = [];
+var final_list = [];
+var count = 0;
+var db_inst;
+var db_role;
+var id2;
+$('form#deployform').empty();
+function test(el) {
+    id1 = $(el).closest("tr").find('td:eq(4)').text();
+	
+ //alert(id1+id2+id3+id4+id5);
+ //location.href='proj_det.html?prov_id='+id1+"&vcpu="+id2+"&mem="+id3+"&store="+id4+"&cpu="+id5;
+    //alert(id);
+}
+
+function myfun(el)
+{
+//var id = el.id();
+//alert(el);
+//alert(id1);
+location.href = 'http://172.29.59.65:3000/actions?status='+el+"&id="+id1;
+
+}
+
+
+
+function myFunction(el) {
+	id1 = $(el).closest("tr").find('td:eq(0)').text();
+	id2 = $(el).closest("tr").find('td:eq(1)').text();
+	//alert(id2);
+	//$(el).closest("tr").css('background-color','#bfbfbf');
+	//alert(id1);
+	$('#deployform').show();
+	if(id2 == "AWS")
+	{
+	    //alert("azure");
+		$('table.network_region').show();
+		$('table.azure_cloud').hide();
+	}
+	else
+	{
+	    $('table.network_region').hide();
+		$('table.azure_cloud').show();
+	}
+	var data = {};
+   data.id1 = id1;
+   //data.os = os;
+   $.ajax({
+     type: 'POST',
+	 jsonpCallback: "callback",
+     datatype: 'jsonp',
+     data: data,
+	 //contentType: 'application/json',
+     url: 'http://172.29.59.65:3000/deploy_data',
+     success: function(data, textStatus) {
+     $('table.center_left_table2 tbody').empty(); 
+        //alert(data);
+       var temp_array = data.split('~');
+       // alert(temp_array);   			
+		var inst_array=temp_array[0].split(',');
+		var img_array=temp_array[1].split(',');
+		var role_array=temp_array[2].split(',');
+		var name_array=temp_array[3].split(',');
+		var region_array=temp_array[4].split(',');
+		
+		$('tr#temp_name td.tename').text(name_array);
+		$('tr#temp_region td.teregion').text(region_array);
+		//$('tr#temp_descp td.tedescp').text(descp_array);
+		//$('tr#temp_id td.tempid').text(id_array);
+		
+		var full_len=inst_array.length;
+		//alert(full_len);				
+		var tr_new;
+		//for (var i=0;i<full_len)
+        for (var i = 0; i < full_len; i++) {
+           tr_new = $('<tr/>');
+            tr_new.append("<td>" + inst_array[i] + "</td>");
+            tr_new.append("<td>" + img_array[i] + "</td>");
+            tr_new.append("<td>" + role_array[i] + "</td>");
+            tr_new.append("<td><select><option value=1>1</option><option value=2>2</option></select></td>");
+            $('table.center_left_table2').append(tr_new);
+			/*tr_new.text("<td>" + img_array[i] + "</td>");  
+			tr_new.text("<td>" + role_array[i] + "</td>");
+			tr_new.append("<td><input type='checkbox' name='select'></input></td>");*/
+          
+        }
+	   
+     },
+	 error: function (xhr, status, error){
+        console.log('Failure');
+		alert("failure");
+		},
+   });
+  	
+}
+
+function deployfunc(){
+if(id2=="AWS")
+{
+var n1 = document.getElementById("vpc").value;
+var n2 = document.getElementById("subnet").value;
+var n3 = document.getElementById("project").value;
+}
+else
+{
+var n1 = document.getElementById("clou_service").value;
+var n2 = document.getElementById("prod_stage").value;
+var n3 = document.getElementById("project").value;
+}
+
+var selec_table = document.getElementById('deploytable');
+var tab_len = selec_table.rows.length;
+ //var role_count = document.getElementById("role_count").value;
+ var tename = $('tr#temp_name td.tename').text();
+ //alert(tename);
+//alert(selec_project);
+form_det.push(id2);
+form_det.push(n1);
+form_det.push(n2);
+form_det.push(n3);
+form_det.push(tename);
+
+
+//var cells = table.getElementsByTagName('td');
+//alert(tab_len);
+     for (i = 1; i < tab_len; i++){
+       
+    	   	var oCells = selec_table.rows.item(i).cells;
+    	    var cellLength = oCells.length;
+    		   for(var j = 0; j < cellLength-1; j++){
+
+        		      var cellVal = oCells.item(j).innerHTML;
+                      roles[count] = cellVal;
+             		  count++;
+         	   }
+         	   
+      }
+      
+     // alert(roles);
+      final_list = form_det.concat(roles);
+      console.log(final_list);
+      
+      
+      $.ajax({
+     type: 'POST',
+	 jsonpCallback: "callback",
+     datatype: 'jsonp',
+     data: "d1="+form_det+"&d2="+roles,
+	 //contentType: 'application/json',
+     url: 'http://172.29.59.65:3000/store_template',
+     success: function(data, textStatus) {
+     alert('success');
+	   
+     },
+	 error: function (xhr, status, error){
+        console.log('Failure');
+		alert("failure");
+		},
+   });
+   
+
+
+}
+
+function windownew(){
+window.open ("http://172.29.59.63:3000/cloud_service", "Janela", "status=no, width=500, height=500, left=200,top=150")
+}
+
+function prodstage(){
+window.open ("http://172.29.59.63:3000/prod_stage", "Janela", "status=no, width=700, height=500, left=200,top=150")
+}
+
+function filtercloud()
+{
+var project = document.getElementById("project").value;
+//alert(project);
+if(id2 == "AWS"){
+//alert("aws selected");
+}
+else 
+{
+var data = {};
+data.project = project;
+$.ajax({
+     type: 'POST',
+	 jsonpCallback: "callback",
+     datatype: 'jsonp',
+     data: data,
+	 //contentType: 'application/json',
+     url: 'http://172.29.59.63:3000/cloud_project',
+     success: function(data, textStatus) {
+     $('#cloud_service').empty();
+     $('#prod_stage').empty();
+     if(data == "Empty")
+     {
+     alert("There are no cloud service created for this project");
+     }
+     else
+     {
+     //alert(data);
+     var c_name = data.split(',');
+	        //alert(cloud_name);	
+			var testDdp = $('#cloud_service');
+			
+			for (var i = 0; i < c_name.length; i++) {
+			   var option = $("<option/>");
+			   option.attr("value", c_name[i]).text(c_name[i]);
+			   testDdp.append(option);
+			}
+     }
+     
+	   
+     },
+	 error: function (xhr, status, error){
+        console.log('Failure');
+		alert("failure");
+		},
+   });
+//alert("azure selected");
+}
+}
+
+function filterslot()
+{
+var cloud_service = document.getElementById("cloud_service").value;
+//alert(project);
+if(id2 == "AWS"){
+//alert("aws selected");
+}
+else 
+{
+var data = {};
+data.cloud_service = cloud_service;
+$.ajax({
+     type: 'POST',
+	 jsonpCallback: "callback",
+     datatype: 'jsonp',
+     data: data,
+	 //contentType: 'application/json',
+     url: 'http://172.29.59.63:3000/filter_slot',
+     success: function(data, textStatus) {
+     $('#prod_stage').empty();
+     if(data == "Empty")
+     {
+     alert("There are no deployments created for this project");
+     }
+     else
+     {
+     //alert(data);
+     var slot_name = data.split(',');
+	        //alert(cloud_name);	
+			var testDdp = $('#prod_stage');
+			
+			for (var i = 0; i < slot_name.length; i++) {
+			   var option = $("<option/>");
+			   option.attr("value", slot_name[i]).text(slot_name[i]);
+			   testDdp.append(option);
+			}
+     }
+     
+	   
+     },
+	 error: function (xhr, status, error){
+        console.log('Failure');
+		alert("failure");
+		},
+   });
+//alert("azure selected");
+}
+}
+</script>
+<style>
+div.formLayout
+{		
+	position: fixed;
+	background: ghostwhite ;
+	@margin-left : 300px;
+	@margin-top : 90px;
+	width : 1265px;
+}
+#header_content1 {
+    position: relative;	
+    background: #d9271d;
+    padding: 20px; 
+    width: 1225px;
+    height: 20px;
+	@font-family:"Times New Roman";
+	@font-size:180%;	
+}
+#footer {	
+	margin-top:700px;
+    background: #100000 ;
+    padding: 20px; 
+    width: 1225px;
+    height: 20px;
+	font-family:"Times New Roman";
+	font-size:180%;`		
+}
+#Nodes{
+	margin-left : 780px;
+}
+.button,.cancel
+	{
+		margin-left:10px;
+		padding:5px;
+		color: #fff;
+		background-color: #F00000;
+		font-weight: bold;
+		font-size: 100%;
+		width:100px;
+	}
+.save
+	{
+		margin-left:500px;
+		padding:5px;
+		color: #fff;
+		background-color: #F00000;
+		font-weight: bold;
+		font-size: 100%;
+		width:100px;
+	}
+#Provider,#region1
+	{
+		width:150px; 
+		height: 25px
+	}
+#cld,#rgn,#tname,#tdesc
+	{
+		font-size: 120%;	
+	}
+	
+table.deploy_table th{
+	background-color : honeydew;
+	color: black;
+}
+
+table.deploy_table{
+border:0;
+}
+</style>
+<body>
+<header>
+<img src="/stylesheets/logo.png" height="71px" width="372px"/>	
+</header>
+
+<div id="header_content1">
+
+<div id="menu" class="menu">
+<form id="menus" class="menus">
+		<div id="nav">
+		<ul>		
+		<li><a href="#">Template</a>
+		<ul>
+			<li><a href="http://172.29.59.63:3000/PreView">View</a></li>
+			<li><a href="http://172.29.59.63:3000/new_template" id="create">Create</a></li>			
+			<li><a href=" 172.29.59.61:3000/deploy">Deploy</a></li>		
+			<li><a href="172.29.59.61:3000/manage_env">Manage</a></li>		
+		</ul>
+		</li>
+		<li><a href="#">Project</a>
+		<ul>
+			<li><a href="#">Create</a></li>
+			<li><a href="#">view</a></li>						
+		</ul>
+		</li>
+		<li><a href="#">Blueprint</a>
+		<ul>
+			<li><a href="#">Create</a></li>
+			<li><a href="#">view</a></li>
+			<li><a href="#">Deploy</a></li>			
+		</ul>
+		</li>
+		<li><a href="#">About</a>
+		<ul>
+			<li><a href="#">News</a></li>
+			<li><a href="#">Contact</a></li>			
+		</ul>
+		</li>		
+		</ul>
+		</div>
+	</form>
+</div>
+</div>
+<div class="formLayout">
+<div class="extreme_left">
+<p style="font-weight:bold;font-size:17px;">Select Cloud</p>
+<table>
+<tr>
+	<td><input type="checkbox"></td>
+	<td> AWS </td>
+</tr>
+<tr>
+	<td><input type="checkbox"></td>
+	<td> Microsoft Azure </td>
+</tr>
+<tr>
+	<td><input type="checkbox"></td>
+	<td> HP Helion </td>
+</tr>
+<tr>
+	<td><input type="checkbox"></td>
+	<td> IBM Softlayer </td>
+</tr>
+<tr>
+	<td><input type="checkbox"></td>
+	<td> OpenStack </td>
+</tr>
+</table>
+<br/>
+<input type="button" value="Search"></input>
+</div>
+<div class="center">
+
+<div class="center_right">
+<table id="row_select" class="deploy_table">
+		<thead id="deploy_thead">
+		<tr>
+			<th>Template name</th>
+			<th>Provider</th>
+			<th>Region</th>
+			<th>No of Nodes</th> 	
+		</tr>
+		</thead>
+		
+		
+		
+		<% data.forEach(function(data) { %>	
+		<tbody>
+		<tr onClick="myFunction(this)">
+		<td class="row_select_id"><%= data.Template_name %></td>
+        <td><%= data.Cloud %></td>
+        <td><%= data.Region %></td>
+        <td><%= data.Instances.length %></td>
+        <!--<td><input type='radio' name='select'onclick='myFunction(this)';></input></td>-->
+        <!--<td><input type='checkbox' name='select'/></td>-->
+        </tr>
+        </tbody>
+        <% }); %>
+		</table>
+</div>
+<div class="center_left">
+<form id="deployform">
+<table class="center_left_table1" border=0 >
+<tr id="temp_name">
+<td style="font-weight:bold;">Template Name</td>
+<td class="tename" width="200"></td>
+</tr>
+
+<tr id="temp_region">
+<td style="font-weight:bold;">Region</th>
+<td class="teregion" width="200"></td> 
+</tr>
+
+</tr>
+<!--<tr id="temp_id">
+<td style="font-weight:bold;">Template ID</th>
+<td class="tempid" width="300"></td> 
+</tr>
+<tr id="temp_descp">
+<td style="font-weight:bold;">Description</th>
+<td class="tedescp" width="300"></td> 
+</tr>-->
+
+</table>
+<hr/>
+
+<div id="deploytable">
+<table cellpadding="0" cellspacing="0" style="border-collapse: collapse;" class="center_left_table2" id="deploytable">
+<thead>
+<tr id="temp_inst">
+
+<th>Instance Name</th>
+<th>Image</th>
+<th>Role</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+<hr/>
+<table class="network_region">
+<tr>
+	<td>Add VPC</td>
+	<td><select id="vpc" name="vpc">Select</select></td>
+	<td><button type="button" onclick="location.href = 'http://172.29.59.63:3000/create_vpc';">Create</button></td>
+</tr>
+<tr>
+	<td>Add Subnet</td>
+	<td><select id="subnet" name="subnet"></select></td>
+	<td><button type="button">Create</button></td>
+</tr>
+</table>
+<table class="azure_cloud">
+<tr>
+	<td>Add Cloud Service</td>
+	<td><select id="cloud_service" name="cloud_service" onchange= "filterslot()">Select</select></td>
+	<td><button type="button" onClick="windownew()">Create</button></td>
+</tr>
+<tr>
+	<td>Add Environment</td>
+	<td><select id="prod_stage" name="prod_stage"></select></td>
+	<td><button type="button" onClick="prodstage()">Create</button></td>
+</tr>
+</table>
+<hr/>
+<p style="font-weight:bold;font-size:17px;color:#d9271d"> Add Project</p>
+Project Name: <select id="project" name="project" onchange= "filtercloud()"></select><br/>
+<input type="button" value="Deploy Template" class="deploybutton" onClick="deployfunc()"></input>
+<input type="button" value="Create Template" class="createbutton" onclick="location.href = 'http://172.29.59.63:3000/new_template';"></input>
+</div>
+
+
+</form>
+</div>	
+<footer>
+<font color="#FFFFFF">Follow us:</font>
+</footer>
+
+</body>
+</html>

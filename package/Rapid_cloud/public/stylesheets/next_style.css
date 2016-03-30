@@ -1,0 +1,111 @@
+.content, #left_part{
+    background: #F00000;    
+    width: 180px;
+    @height: 600px;
+}
+.content, #left_part ul{
+	list-style:none;
+}
+.content, #left_part ul li a
+{
+	color:#FFFFFF;
+	text-decoration:none;
+	font-family:calibri;	
+	display:block;
+	padding:10px;
+}
+.content, #left_part ul li a:hover
+{
+	color:#000;
+}
+#table_content {
+    float: left;    
+	height: 610px;
+	width: 1047px;	
+	@border:1px solid black;
+	overflow:auto;	
+}
+
+table.new_table, tr:nth-child(even) {
+    background-color: #eee;
+}
+table.new_table, tr:nth-child(odd) {
+   background-color:#fff;
+}
+table.new_table, td, th {
+    border: 1px solid black;
+}
+
+
+select.region{
+position:absolute;
+float:right;
+border:1px solid black;
+
+
+}
+
+select.os{
+position:absolute;
+float:right;
+border:1px solid black;
+margin-top:50px;
+
+
+}
+
+div.fill
+{	
+position:absolute;
+margin-top:80px;
+float : left;
+margin-left:1045px;
+border:20px;
+}
+
+
+input.fil_search
+{
+position:absolute;
+float:right;
+border:1px solid black;
+margin-top:100px;
+}
+
+div.form1
+{
+	background-color:#C8C8C8;
+	float: left;    
+	height: 500px;
+	width: 800px;	
+	margin-left:50px;
+	margin-top:50px;
+	@border:1px solid black;
+}
+div.form2
+{
+	@background-color:#C8C8C8;
+	float: left;    
+	height: 500px;
+	width: 800px;	
+	margin-left:50px;
+	margin-top:50px;
+	@border:1px solid black;
+}
+
+
+table.form_table
+{
+border:0px;
+background-color: white;
+}
+
+input.next_button
+{
+position:absolute;
+float:left;
+border:1px solid black;
+@margin-top:110px;
+}
+
+

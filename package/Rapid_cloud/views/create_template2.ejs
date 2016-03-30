@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+<link rel="stylesheet" type="text/css" href="/css/tmplt_create.css">
+<link rel="stylesheet" type="text/css" href="/stylesheets/template2.css">
+<link rel="stylesheet" type="text/css" href="/stylesheets/manage_env.css">
+<link rel="stylesheet" type="text/css" href="/stylesheets/create_template2.css">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="/js/create_template2.js"></script>
+<script src="/js/tmplt_create.js"></script>
+
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/base/jquery-ui.css"/>
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+
+
+<script>
+$(document).ready(function() {
+ 		$('#assign_role').hide();  
+ });
+
+</script>
+<style>
+#popup{
+	display: none;
+	border: 1px solid black;
+}
+
+.button{
+		margin-top: 600px;
+		margin-left: 300px;
+		}
+select{
+		width:80px; 
+		height: 25px;
+}
+</style>
+</head>
+<body>
+<header>
+<img src="/stylesheets/logo.png" height="71px" width="372px"/>	
+</header>
+
+<div id="header_content1">
+
+<div id="menu" class="menu">
+<form id="menus" class="menus">
+		<div id="nav">
+		<ul>
+		<li><a href="#">Node</a>
+		<ul>			
+			<li><a href="http://172.29.59.63:3000">Create</a></li>			
+			<li><a href="#">Deploy</a></li>		
+			<li><a href="#">Manage</a></li>		
+		</ul>
+		</li>		
+		<li><a href="#">Template</a>
+		<ul>
+			<li><a href="#">View</a></li>
+			<li><a href="http://172.29.59.65:3000/new_template" id="create">Create</a></li>			
+			<li><a href="172.29.59.61:3000/deploy">Deploy</a></li>		
+			<li><a href="172.29.59.61:3000/manage_env">Manage</a></li>		
+		</ul>
+		</li>
+		<li><a href="#">Project</a>
+		<ul>
+			<li><a href="#">Create</a></li>
+			<li><a href="#">view</a></li>						
+		</ul>
+		</li>
+		<li><a href="#">Blueprint</a>
+		<ul>
+			<li><a href="#">Create</a></li>
+			<li><a href="#">view</a></li>
+			<li><a href="#">Deploy</a></li>			
+		</ul>
+		</li>
+		<li><a href="#">About</a>
+		<ul>
+			<li><a href="#">News</a></li>
+			<li><a href="#">Contact</a></li>			
+		</ul>
+		</li>		
+		</ul>
+		</div>
+	</form>
+</div>
+</div>
+<div class="formLayout">
+<div class="extreme_left">
+<div class="layer1">		
+	
+			<p class="heading">Provider</p>
+			<div id="content1" class="content1">
+					
+						<p id="AWS" class="pname" onclick="region_function(this.id)">AWS </p>
+						<p id="Azure" class="pname"  onclick="region_function(this.id)">AZURE</p>
+						<p class="pname">OpenStack</p>
+						<p class="pname">HP Helion</p>
+						<p class="pname">Soft Layer</p>
+					
+			</div>
+			<p class="heading">Region</p>
+			<div id="content2" class="content2">
+		</div>				
+				
+	</div>
+	
+</div>
+<div class="center">
+
+	<div class="center_right">
+	
+		<div id="Selected_role">
+		<p class="assign_roles">Select to assign nodes</p>
+		</div>	
+		
+		<div id="popup" data-name="name" class="dialog">
+			<a href="#close"></a>
+					<p class="tname"></p>					
+		</div>
+			
+	</div>
+
+	<div class="center_left">
+		
+		<div id="assign_role">
+			<p class="assign_nodes">Assign Node</p>
+			<table>
+				<tr>
+					<th>Role :</th>
+					<td id="role"></td>
+				</tr>
+				<tr>
+					<th>Operating System :</th>
+					<td id="os"></td>
+				</tr>
+				<tr>
+					<th>Version :</th>
+					<td id="version"></td>
+				</tr>
+				<tr>
+					<th>Role Attribute :</th>
+					<td id="attribute"></td>
+				</tr>			
+			</table>
+			<div id="config">
+					<p class="node_config">Node Configuration</p>
+					<table>
+					      <tr>
+					        <th>CPU</th>
+					        <td>
+								<select id="cpu" onchange="function_core(this.value)">
+													
+								</select>
+							</td>      
+					        <th>RAM(Gb)</th>
+					        <td>
+								<select id="ram_size" onchange="function_ram(this.value)">							
+								</select>		
+							</td>      
+					        <th>Storage(Gb)</th>
+					        <td>
+								<select id="disk" onchange="function_disk(this.value)">							
+								</select>
+							</td>
+					      </tr>
+					 </table>
+						 <div id="node_details" class="node_details">
+						 	<p class="node_select">Select Node</p>
+						 	<table border="0" id="node_table" class="node_table">
+									<thead>
+										<tr>
+											<th>Inst_Name</th>
+											<th>VCPU</th>	
+											<th>RAM</th>
+											<th>Storage</th>								
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>		
+							</table></p>
+							<label id="img_lbl">Select Image</label>
+								<select id="sel_image" onchange = "get_image(this.value)"></select></p>
+							<input type="button" value="Save" class="actions" onclick="save_info()"/>											
+							<input id="btns" type="button" value="view" class="actions" onclick="view_function()"/>
+												
+						</div>
+			</div>	
+		</div>
+		<div id="brief_info">
+			<p class="template_info">Template Information</p>
+				<table border="0" id="template_info_table">
+				<thead>
+					<tr>
+						<th>Roles</th>
+						<th>Nodes</th>
+						<th>Images</th>
+					</tr></thead>				
+				</table>
+				<label>Template_name</label>
+				<input type="Text" id="t_name" onchange="pvd_name_check(this.value)"/>
+				</p>
+			<input type="Submit" id="create_button" value="submit" class="actions" onclick="save_all_info()"/>	
+			<input type="button" value="Cancel" class="actions" onclick="view_function()"/>		
+		</div>
+	</div>
+
+</div>
+	
+<footer>
+<font color="#FFFFFF">Follow us:</font>
+</footer>
+
+</body>
+</html>

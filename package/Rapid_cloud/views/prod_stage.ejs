@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+window.onload=function(){
+
+   $.get('http://172.29.59.63:3000/cloudname', {}, function(results){
+	 	
+	        //alert(results);
+	        var cloud_name = results.split(',');
+	        //alert(cloud_name);	
+			var testDdp = $('#cloudservice');
+			
+			for (var i = 0; i < cloud_name.length; i++) {
+			   var option = $("<option/>");
+			   option.attr("value", cloud_name[i]).text(cloud_name[i]);
+			   testDdp.append(option);
+			}
+		    
+       
+   });
+   
+      $.get('http://172.29.59.63:3000/azure_size', {}, function(results){
+	 	
+	        //alert(results);
+	        //console.log(sizes);
+	        var sizes = results.split(',');
+	        //alert(cloud_name);	
+			var testDdp = $('#size');
+			
+			for (var i = 0; i < sizes.length; i++) {
+			   var option = $("<option/>");
+			   option.attr("value", sizes[i]).text(sizes[i]);
+			   testDdp.append(option);
+			}
+		    
+       
+   });
+         $.get('http://172.29.59.63:3000/azure_image', {}, function(results){
+	 	
+	        //alert(results);
+	        //console.log(sizes);
+	        var images = results.split(',');
+	        //alert(cloud_name);	
+			var testDdp = $('#image');
+			
+			for (var i = 0; i < images.length; i++) {
+			   var option = $("<option/>");
+			   option.attr("value", images[i]).text(images[i]);
+			   testDdp.append(option);
+			}
+		    
+       
+   });
+}
+
+function deployslot(){
+document.getElementById("createbtn").disabled = true;
+var cloud = document.getElementById("cloudservice").value;
+var size = document.getElementById("size").value;
+var image = document.getElementById("image").value;
+var slot = document.getElementById("slot").value;
+var deploy = document.getElementById("deploy_name").value;
+var data = {};
+data.cloud = cloud;
+data.size = size;
+data.image = image;
+data.slot = slot;
+data.deploy = deploy;
+      $.ajax({
+     type: 'POST',
+	 jsonpCallback: "callback",
+     datatype: 'jsonp',
+     data: data,
+	 //contentType: 'application/json',
+     url: 'http://172.29.59.63:3000/create_deploy_slot',
+     success: function(data, textStatus) {
+     alert(data);
+     },
+	 error: function (xhr, status, error){
+        console.log('Failure');
+		if(!alert('Failure!')){window.location.reload();}
+		},
+   });
+
+}
+</script>
+</head>
+<body>
+Cloud Service: <select id="cloudservice" name="cloudservice"></select><br/><br/>
+Size: <select id="size" name="size"></select><br/><br/>
+Image: <select id="image" name="image"></select><br/><br/>
+Slot: 
+<select id="slot">
+  
+  <option value="production">Production</option>
+  <option value="ptaging">Staging</option>
+</select><br/><br/>
+Name <input type="text" id="deploy_name"></input><br/><br/>
+<button type="button" onClick="deployslot()" id="createbtn">Create</button>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+<link rel="stylesheet" type="text/css" href="/stylesheets/tmplt_create.css">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+
+
+<style>
+div.formLayout
+{		
+	position: fixed;
+	background: ghostwhite ;
+	@margin-left : 300px;
+	@margin-top : 90px;
+	width : 1265px;
+}
+#header_content1 {
+    position: relative;	
+    background: #d9271d;
+    padding: 20px; 
+    width: 1225px;
+    height: 20px;
+	@font-family:"Times New Roman";
+	@font-size:180%;	
+}
+#footer {	
+	margin-top:700px;
+    background: #100000 ;
+    padding: 20px; 
+    width: 1225px;
+    height: 20px;
+	font-family:"Times New Roman";
+	font-size:180%;`		
+}
+#Nodes{
+	margin-left : 780px;
+}
+.button,.cancel
+	{
+		margin-left:10px;
+		padding:5px;
+		color: #fff;
+		background-color: #F00000;
+		font-weight: bold;
+		font-size: 100%;
+		width:100px;
+	}
+.save
+	{
+		margin-left:500px;
+		padding:5px;
+		color: #fff;
+		background-color: #F00000;
+		font-weight: bold;
+		font-size: 100%;
+		width:100px;
+	}
+#Provider,#region1
+	{
+		width:150px; 
+		height: 25px
+	}
+#cld,#rgn,#tname,#tdesc
+	{
+		font-size: 120%;	
+	}
+	
+
+</style>
+<body>
+<header>
+<img src="/stylesheets/logo.png" height="71px" width="372px"/>	
+</header>
+
+<div id="header_content1">
+
+<div id="menu" class="menu">
+<form id="menus" class="menus">
+		<div id="nav">
+		<ul>		
+		<li><a href="#">Template</a>
+		<ul>
+			<li><a href="#">View</a></li>
+			<li><a href="#" id="create">Create</a></li>			
+			<li><a href="172.29.59.61:3000/deploy">Deploy</a></li>		
+			<li><a href="172.29.59.61:3000/manage_env">Manage</a></li>		
+		</ul>
+		</li>
+		<li><a href="#">Project</a>
+		<ul>
+			<li><a href="#">Create</a></li>
+			<li><a href="#">view</a></li>						
+		</ul>
+		</li>
+		<li><a href="#">Blueprint</a>
+		<ul>
+			<li><a href="#">Create</a></li>
+			<li><a href="#">view</a></li>
+			<li><a href="#">Deploy</a></li>			
+		</ul>
+		</li>
+		<li><a href="#">About</a>
+		<ul>
+			<li><a href="#">News</a></li>
+			<li><a href="#">Contact</a></li>			
+		</ul>
+		</li>		
+		</ul>
+		</div>
+	</form>
+</div>
+</div>
+<div class="formLayout">
+<div>
+ <table border="1" class="new_table">
+		<tr>
+			<th>Template Name</th>
+			<th>Project </th>	
+			<th>VPC </th>
+			<th>Subnet</th>
+			<th>Provider </th>
+			<th>Select</th> 
+		</tr>
+		
+		<% data.forEach(function(data) { %>		
+		<tr><td><%= data.template_name %></td>
+        <td><%= data.p_id %></td>
+        <td><%= data.vpc_id %></td>
+        <td><%= data.subnet_id %></td>
+        <td><%= data.prov_id %></td>
+        <td><input type='radio' name='select'onclick='test(this)';></input></td></tr>
+		<% }); %>
+</table>
+</div>
+<footer>
+<font color="#FFFFFF">Follow us:</font>
+</footer>
+
+</body>
+</html>

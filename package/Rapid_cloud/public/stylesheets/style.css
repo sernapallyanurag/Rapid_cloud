@@ -1,0 +1,28 @@
+header{
+	 	
+}
+#header_content {
+	
+    background: #100000 ;
+    padding: 20px; 
+    width: 1225px;
+    height: 20px;
+	font-family:"Times New Roman";
+	font-size:180%;`		
+}
+.content{
+	float: left; 
+	background: #D8D8D8;
+	@padding: 320px;
+	width: 1265px;
+    height: 680px;
+}
+footer {	
+	margin-top:700px;
+    background: #100000 ;
+    padding: 20px; 
+    width: 1225px;
+    height: 20px;
+	font-family:"Times New Roman";
+	font-size:180%;`		
+}

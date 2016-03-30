@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html ng-app>
+<title>Deploy Template</title>
+<link href="bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="css_1/style.css" rel="stylesheet"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+<script src="javascript_1/bootstrap.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<body id="bg">
+<div class="alertS">
+	<div class="alert alert-success alert-vpc" role="alert"><b>VPC</b> is successfully created<span class="glyphicon glyphicon-remove-circle closeAlert"></span></div>
+	<div class="alert alert-success alert-subnet" role="alert"><b>Subnet</b> is successfully created<span class="glyphicon glyphicon-remove-circle closeAlert"></span></div>
+	<div class="alert alert-success alert-stg" role="alert"><b>Storage</b> is created successfully<span class="glyphicon glyphicon-remove-circle closeAlert"></span></div>
+	<div class="alert alert-success alert-sg" role="alert"><b>Security Group</b> is created successfully<span class="glyphicon glyphicon-remove-circle closeAlert"></span></div>
+	<div class="alert alert-success alert-route" role="alert"><b>Route Table</b> is created successfully<span class="glyphicon glyphicon-remove-circle closeAlert"></span></div>
+	<div class="alert alert-success alert-gate" role="alert"><b>Internet GateWay</b> is created successfully<span class="glyphicon glyphicon-remove-circle closeAlert"></span></div>
+	<div class="alert alert-success alert-kp" role="alert"><b>Key Pair</b> is created successfully<span class="glyphicon glyphicon-remove-circle closeAlert"></span></div>
+	<div class="alert alert-success alert-temp" role="alert"><b>Environment</b> is deployed successfully<span class="glyphicon glyphicon-remove-circle closeAlert"></span></div>
+	<div class="alert alert-success alert-cldsrv" role="alert"><b>Cloud Service</b> is created successfully<span class="glyphicon glyphicon-remove-circle closeAlert"></span></div>
+	<div class="alert alert-info" role="alert"><b>Heads up!</b> This alert needs your attention, but it's not super important.<span class="glyphicon glyphicon-remove-circle closeAlert"></span></div>
+	<div class="alert alert-warning" role="alert"><b>Warning!</b> Better check yourself, you're not looking too good.<span class="glyphicon glyphicon-remove-circle closeAlert"></span></div>
+	<div class="alert alert-danger" role="alert"><b>Oh snap!</b> Change a few things up and try submitting again.<span class="glyphicon glyphicon-remove-circle closeAlert"></span></div>
+</div>
+<div class="container">
+				<div>
+				<!-- Pop ups for add vpc and add subnet-->
+				
+				<div class="popupData"></div>
+					<div class="popData">
+						<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title">Create VPC</h4>
+							  </div>
+							  <div class="modal-body">
+								<table style="width:100%;">
+									<tr>
+										<td>
+											<span>Region</span><br>
+											<input type="Text" id="regName" disabled="disabled" style="width:75%;"/>
+										</td>
+										<td>&nbsp;</td>
+										<td>
+										<span>CIDR Block</span><br>
+										<input type="Text" id="cidrBlk"style="width:53%;" placeholder="ex 10.0.0.0/24"/>
+										</td>
+									</tr>
+									<tr>
+										<td>
+										<span>VPC Name</span><br>
+										<input type="Text" id="vpcName"style="width:75%;"/>
+										</td><td></td>
+										<td>
+											<div id="noDEpullL" class="pull-left"><span></span><label id="" class="labelTemp"><span>Tenency </span>
+</label><div id="selTn" class="clickRole forPopup"><span>Select</span><ul id="selsTn" class="dropDown"><li onclick="selectOpt(this,0)" class="One"><dl><dt></dt><dd class="va">default</dd></dl></li><li onclick="selectOpt(this,1)" class="Two"><dl><dt></dt><dd class="va">dedicated</dd></dl></li></ul><span id="" class="glyphicon glyphicon-chevron-down pull-right"><span></span></span></div></div>
+										</td>
+									</tr>
+								</table>
+							  </div>
+							  <div class="modal-footer">
+								<a class="cancelPoup">Cancel</a>&nbsp;
+								<button class="redButton" id="createVpc">Create</button>
+							  </div>
+					</div>
+					<div class="popData1">
+						<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title">Create Subnet</h4>
+							  </div>
+							  <div class="modal-body">
+								<table style="width:100%;">
+									<tr>
+										<td>
+											<span>Name tag</span><br>
+											<!--<div class="clickRole addStoTabWid">
+															<input type="text" id="nameTag" style="border:none;width:100%;">
+														</div>-->
+											<input type="Text" style="width:65%;" id="nameTag"/>
+										</td>
+										<td>&nbsp;</td>
+										<td>
+										<span>CIDR block</span><br>
+											<input type="Text" id="cidrBlkSn" style="width:65%;" placeholder="ex 10.0.0.0/24"/>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div id="noDEpullL" class="pull-left"><span></span><label id="" class="labelTemp"><span>VPC </span>
+</label><div id="selVpcSn" class="clickRole forPopup"><span>Select</span><ul id="selsVpcSn" class="dropDown"></ul><span id="" class="glyphicon glyphicon-chevron-down pull-right"><span></span></span></div></div>
+										</td><td></td>
+										<td>
+											<div id="noDEpullL" class="pull-left"><span></span><label id="" class="labelTemp"><span>Availability Zone </span>
+</label><div id="selZn" class="clickRole forPopup"><span>Select</span><ul id="selsZn" class="dropDown"></ul><span id="" class="glyphicon glyphicon-chevron-down pull-right"><span></span></span></div></div>
+										</td>
+									</tr>
+								</table>
+							  </div>
+							  <div class="modal-footer">
+								<a class="cancelPoup">Cancel</a>&nbsp;
+								<button class="redButton" id="createSubnet">Create</button>
+							  </div>
+					</div>
+					<!-- Popup menu for Creating Cloud Service -->
+						<div class="popDataClsrv">
+						<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title">Create Cloud Service</h4>
+							  </div>
+							  <div class="modal-body">
+								<table style="width:100%;">
+									<tr>
+										<td>
+											<span>Region</span><br>
+											<input type="Text" id="regNameClsrv" disabled="disabled" style="width:75%;"/>
+										</td>
+										<td>&nbsp;</td>
+										<!--<td>
+										<span>CIDR Block</span><br>
+										<input type="Text" id="cidrBlk"style="width:53%;" placeholder="ex 10.0.0.0/24"/>
+										</td>-->
+										<td>
+										<span>Cloud Service Name</span><br>
+										<input type="Text" id="cloudName"style="width:75%;"/>
+										</td><td></td>
+										<td>
+									</tr>
+									<!--<tr>
+										<td>
+										<span>VPC Name</span><br>
+										<input type="Text" id="vpcName"style="width:75%;"/>
+										</td><td></td>
+										<td>
+											<div id="noDEpullL" class="pull-left"><span></span><label id="" class="labelTemp"><span>Tenency </span>
+</label><div id="selTn" class="clickRole forPopup"><span>Select</span><ul id="selsTn" class="dropDown"><li onclick="selectOpt(this,0)" class="One"><dl><dt></dt><dd class="va">default</dd></dl></li><li onclick="selectOpt(this,1)" class="Two"><dl><dt></dt><dd class="va">dedicated</dd></dl></li></ul><span id="" class="glyphicon glyphicon-chevron-down pull-right"><span></span></span></div></div>
+										</td>
+									</tr>-->
+								</table>
+							  </div>
+							  <div class="modal-footer">
+								<a class="cancelPoup">Cancel</a>&nbsp;
+								<button class="redButton" id="createClsrv">Create</button>
+							  </div>
+					</div>
+					<!-- Popup for create cloud service ends here -->
+				
+				<!--Pop ups will end here-->
+				</div>
+
+	<div class=	"header-sec">
+		<header role="header">
+			<a href="#"> <img src="images_1/RapidCloud_Logo.png" /> </a> <span class="header-txt"> Manage, Govern and Optimize your Cloud Environments</span>
+			<img src="images_1/Sonata_Logo.png" class="second-logo"/>
+			<ul>
+				<li><span class="glyphicon glyphicon-bell"></span></li>
+				<li><span class="glyphicon glyphicon-envelope"></span></li>
+				<li><span class="glyphicon glyphicon-question-sign"></span></li>
+				<li><span class="glyphicon glyphicon-cog"></span></li>
+			</ul>
+		</header>
+		</div>
+		<aside class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+			<section role="aboutProject">
+				<br>
+				<img src="images_1/profile_pic.png" />
+				<h1>Andreq M.Hammonds <span class="glyphicon glyphicon-chevron-down arrowRed"></span></h1>
+				<br>
+			</section>
+			<menu role="profileLinks">
+				<ul>
+					<li>Sign in as User</li>
+					<li>My Account</li>
+					<li>Sign Out</li>
+				</ul>
+			</menu>
+			<nav role="naviGation">
+				<ul>
+					<li class="naee"><a href="" class="activeTab">Design <span class="glyphicon glyphicon-chevron-down arrowGray rotateGray"></span></a>
+						<dl>
+							<dt class="activeLink">Templates</dt>
+							<dt>Node</dt>
+							<dt>Blueprints</dt>
+							<dt>Networks</dt>
+							<dt>Load Balancers</dt>
+						</dl>
+					</li>
+					<li class="naee"><a href="">Deploy<span class="glyphicon glyphicon-chevron-down arrowGray"></span></a>
+						<dl>
+							<dt>Deploy Option 1</dt>
+							<dt>Deploy Option 2</dt>
+							<dt>Deploy Option 3</dt>
+							<dt>Deploy Option 4</dt>
+						</dl>
+					</li>
+					<li class="naee"><a href="">Manage<span class="glyphicon glyphicon-chevron-down arrowGray"></span></a>
+						<dl>
+							<dt>Manage Option 1a</dt>
+							<dt>Manage Option 2a</dt>
+							<dt>Manage Option 3a</dt>
+							<dt>Manage Option 4a</dt>
+						</dl>
+					</li>
+					<li class="naee"><a href="">Monitor<span class="glyphicon glyphicon-chevron-down arrowGray"></span></a>
+						<dl>
+							<dt>Monitor Option 1b</dt>
+							<dt>Monitor Option 2b</dt>
+							<dt>Monitor Option 3b</dt>
+							<dt>Monitor Option 4b</dt>
+						</dl>
+					</li>
+					<li class="naee"><a href="">Projects<span class="glyphicon glyphicon-chevron-down arrowGray"></span></a>
+						<dl>
+							<dt>Projects Option 1c</dt>
+							<dt>Projects Option 2c</dt>
+							<dt>Projects Option 3c</dt>
+							<dt>Projects Option 4c</dt>
+						</dl>
+					</li>
+				</ul>
+			</nav>
+		</aside>
+		<section class="col-xs-12 col-sm-10 col-md-10 col-lg-10" role="contentArea">
+			<header>
+				<h1>Deploy Template<a href=""></a></h1>
+			</header>
+			<section role="createTemplate">
+				<div class="roles" style="margin-bottom:10px;">
+					<table class="temp_info">
+						<!--<tbody>
+							<tr>
+								<td><img src="images_1/AWS_Logo.png"></td>
+								<td><span style="font-size:18px;font-weight:bold;"><span class="deploytempNa">Name: </span>Test_temp1</span><br>
+								Region : US_EAST_N.Virginia<br>
+								Provider : AWS</td>
+							</tr>
+						</tbody>-->
+					</table>
+				</div>
+				<h4>Template Configuration</h4>
+				
+				<div class="templateConfiguration">
+				
+				<table class="tableWid">
+					<tr>
+						<td class="">
+								<table class="tableWid">
+										<tbody>											
+											<tr>
+											
+												<td>
+													<div id="noDEpullL" class="pull-left"><span></span><label id="" class="labelTemp">
+													<span>Environment * </span>
+	<a href="#" data-toggle="tooltip" title="" data-original-title=""><span class="infoSignColor glyphicon glyphicon-info-sign"></span></a>
+	</label><div id="sel" class="clickRole borderNoN temp1stRowWid"><span>Select</span><ul id="sels" class="dropDown"><li onclick="selectOpt(this,0)" class="Dev"><dl><dt></dt><dd class="va">Dev</dd></dl></li><li onclick="selectOpt(this,1)" class="Test"><dl><dt></dt><dd class="va">Test</dd></dl></li><li onclick="selectOpt(this,2)" class="Stag"><dl><dt></dt><dd class="va">Stag</dd></dl></li><li onclick="selectOpt(this,3)" class="Prod"><dl><dt></dt><dd class="va">Prod</dd></dl></li><li onclick="selectOpt(this,4)" class="others"><dl><dt></dt><dd class="va">Others</dd></dl></li></ul><span id="" class="glyphicon glyphicon-chevron-down pull-right"><span></span></span></div></div>
+												</td>
+											
+												<td>
+													<div id="noDEpullL" class="pull-left"><span></span><label id="" class="labelTemp">
+													<span>Project Name * </span>
+	<a href="#" data-toggle="tooltip" title="" data-original-title=""><span class="infoSignColor glyphicon glyphicon-info-sign"></span></a>
+	</label><div id="selpj" class="clickRole borderNoN"><span>Select</span><ul id="selspj" class="dropDown"></ul><span id="" class="glyphicon glyphicon-chevron-down pull-right"><span></span></span></div></div>
+												</td>
+												<td id="depVpc">
+													<div id="noDEpullL" class="pull-left depVpc"><span></span><label id="" class="labelTemp">
+													<span>Add VPC * </span>
+													<a href="#" data-toggle="tooltipVpc" title="" data-original-title=""><span class="infoSignColor glyphicon glyphicon-info-sign"></span></a>
+													</label><div id="selvpc" class="clickRole borderNoN"><span>Select</span><ul id="selsvpc" class="dropDown"></ul><span id="" class="glyphicon glyphicon-chevron-down pull-right"><span></span></span></div></div>
+													<button class="buttonVpc" style="margin-top: 35px;margin-left:10px;">New</button>
+												</td>
+												<td id="depSub">
+													<div id="noDEpullL" class="pull-left depSub"><span></span><label id="" class="labelTemp"><span>Add Subnet * </span>
+													<a href="#" data-toggle="tooltipSubnet" title="" data-original-title=""><span class="infoSignColor glyphicon glyphicon-info-sign"></span></a>
+													</label><div id="selsn" class="clickRole borderNoN"><span>Select</span><ul id="selssn" class="dropDown"></ul><span id="" class="glyphicon glyphicon-chevron-down pull-right"><span></span></span></div></div>
+													<button class="buttonSn" style="margin-top: 35px;margin-left:10px;">New</button>
+												</td>
+												<!-- td for cloud service drop down -->
+												<td id="depClsrv">
+													<div id="noDEpullL" class="pull-left depClsrv"><span></span><label id="" class="labelTemp"><span>Cloud Service</span>
+													<a href="#" data-toggle="tooltipClsrv" title="" data-original-title=""><span class="infoSignColor glyphicon glyphicon-info-sign"></span></a>
+													</label><div id="selClsrv" class="clickRole borderNoN"><span>Select</span><ul id="selsClsrv" class="dropDown"></ul><span id="" class="glyphicon glyphicon-chevron-down pull-right"><span></span></span></div></div>
+													<button class="buttonClsrv" style="margin-top: 35px;margin-left:10px;">New</button>
+												</td>
+												<!-- td cloud service drop down ends here -->
+											</tr>
+									</tbody>
+								</table>
+							</td>
+					</tr>
+				</table>
+				</div>
+				<div class="routeAndGatWayConfiguration">
+				<table class="tableWid">
+					<tr>
+						<td class="">
+								<table class="">
+								<tbody>						
+											<tr>
+												<td><b>Route Table</b>&nbsp<a href="#" data-toggle="tooltiproute" title="" data-original-title=""><span class="infoSignColor glyphicon glyphicon-info-sign"></span></a></td>												
+												<td><b>Internet Gateways</b>&nbsp<a href="#" data-toggle="tooltipgate" title="" data-original-title=""><span class="infoSignColor glyphicon glyphicon-info-sign"></span></a></td>
+												<td><b>Key Pair</b>&nbsp<a href="#" data-toggle="tooltipkp" title="" data-original-title=""><span class="infoSignColor glyphicon glyphicon-info-sign"></span></a></td>
+											</tr>
+											<!--<tr>
+												<td colspan="3">&nbsp;</td>												
+											</tr>-->
+											<tr>
+												<td>
+													<div class="pull-left">
+														<label class="labelTemp">Route table name</label>
+														<div class="clickRole">
+															<input type="text" id="routeName" placeholder="Name" style="border:none;width:100%;"/>	
+														</div>
+														</div>
+														<button id="buttonRt" class="buttonRt" style="margin-top: 35px;margin-left:10px;">Create</button>
+													
+												</td>
+										
+												<td>
+													<div class="pull-left">
+														<label class="labelTemp">Gateway Name</label>
+														<div class="clickRole">
+															<input type="text" id="gateWayName" placeholder="Name" style="border:none;width:100%;"/>
+														</div>
+													</div>
+													<button id="buttonGtw" class="buttonGtw" style="margin-top: 35px;margin-left:10px;">Create</button>
+												</td>
+												<!--Key pair for template level-->
+												<td>
+													<div class="pull-left">				
+														<label class="labelTemp">Key Name</label>
+														<div class="clickRole addStoTabWid"><input id="keyPairName0" type="text" style="border:none;width:100%;"></div></div>						
+					  									<button class="keypair" id="keyPair0" style="margin-top: 35px;margin-left:10px;" onclick="createKpFunction(this.id,0)">Create</button></div>
+												</td>												
+											</tr>
+									</tbody>									
+								</table>
+							</td>
+					</tr>
+				</table>
+				  <!--<div class="pull-right" style="padding: 10px 30px;">
+					<a href="#" class="advancedOptions">Advanced Options</a>
+				  </div><br>-->
+				</div><!--
+				<div class="advancedOptionsDiv">
+					<div class="col-lg-12 col-md-12 col-sm-12 content_box padZero advancedOptionsDivCon" id="latestUpdates">
+						<ul id="latestUpdatesTab" class="nav nav-tabs hidden-xs">
+							<li class="active addStoTab"><a href="#Elastitcip" data-toggle="tab">Elastitc IP's</a></li>
+							<li><a href="#NATGateways" data-toggle="tab">NAT Gateways</a></li>							
+							<li class="pull-right">
+								<button type="button" class="close redLinks closeAdvan" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+							</li>
+						</ul><div class="panel-group visible-xs" id="latestUpdatesTab-accordion"></div>
+						<div class="tab-content hidden-xs">
+							<div class="tab-pane fade  in active alignAllsides" id="Elastitcip">
+								<div class="operatingSys">
+									<div class="pull-left">
+										<label class="labelTemp">EIP ID</label>
+										<div class="clickRole elasTicTabWid">
+											<input type="text" placeholder="Ex: Project_Name" style="border:none;width:100%;">
+										</div>
+									</div>
+								</div>
+								<div class="operatingSys">
+									<div class="pull-left">
+										<label class="labelTemp">Address</label>
+										<div class="clickRole elasTicTabWid">
+											<input type="text" placeholder="Ex: TCP" style="border:none;width:100%;">
+										</div>
+									</div>
+								</div>
+								<div class="roleID">
+									<div class="pull-left">
+										<label class="labelTemp">Associate With</label>
+										<div class="clickRole elasTicTabWid">
+											<span class="proJetName">Select</span>
+											<ul style="" class="dropDown">
+												<li onclick="dataUpDate(this)">
+													<dl>
+													  <dt>&nbsp;</dt>
+													  <dd>Volume 1</dd>
+													</dl>
+												</li>
+												<li onclick="dataUpDate(this)">
+													<dl>
+													  <dt>&nbsp;</dt>
+													  <dd>Volume 2</dd>
+													</dl>
+												</li>									
+											</ul>							
+											<span class="glyphicon glyphicon-chevron-down pull-right" style="padding-top:3px;"></span>
+											</div>						
+										</div>
+									</div>
+									<div class="roleID">
+									<div class="pull-left">
+										<label class="labelTemp">Select</label>
+										<div class="clickRole elasTicTabWid">
+											<span class="proJetName">Select</span>
+											<ul style="" class="dropDown">
+												<li onclick="dataUpDate(this)">
+													<dl>
+													  <dt>&nbsp;</dt>
+													  <dd>Volume 1</dd>
+													</dl>
+												</li>
+												<li onclick="dataUpDate(this)">
+													<dl>
+													  <dt>&nbsp;</dt>
+													  <dd>Volume 2</dd>
+													</dl>
+												</li>									
+											</ul>							
+											<span class="glyphicon glyphicon-chevron-down pull-right" style="padding-top:3px;"></span>
+											</div>						
+										</div>
+									</div>
+									<div class="operatingSys">
+										<div class="pull-left">
+											<label class="labelTemp">Private IP</label>
+											<div class="clickRole elasTicTabWid">
+												<input type="text" placeholder="Ex: 192.168.1.1" style="border:none;width:100%;">
+											</div>
+										</div>
+										<a href="" style="margin-top: 33px;display: inline-block;"><span class="glyphicon glyphicon-plus-sign addMoreElastitcIP" id="addRole" style="font-size:23px;color:#999999;"></span></a>
+									</div>
+									<div>&nbsp;</div>
+									<div id="addClonedElements" class="addClonedElements" style="display:none;">
+											<div class="clickRole elasTicTabWid clonedRo">
+												<input type="text" placeholder="Ex: Project_Name" style="border:none;width:100%;">
+											</div>
+											<div class="clickRole elasTicTabWid clonedRo">
+												<input type="text" placeholder="Ex: TCP" style="border:none;width:100%;">
+											</div>
+											<div class="clickRole elasTicTabWid clonedRo">
+													<span class="proJetName">Select</span>
+													<ul style="" class="dropDown">
+														<li onclick="dataUpDate(this)">
+															<dl>
+															  <dt>&nbsp;</dt>
+															  <dd>Volume 1</dd>
+															</dl>
+														</li>
+														<li onclick="dataUpDate(this)">
+															<dl>
+															  <dt>&nbsp;</dt>
+															  <dd>Volume 2</dd>
+															</dl>
+														</li>									
+													</ul>							
+													<span class="glyphicon glyphicon-chevron-down pull-right" style="padding-top:3px;"></span>
+											</div>	
+											<div class="clickRole elasTicTabWid clonedRo">
+												<span class="proJetName">Select</span>
+													<ul style="" class="dropDown">
+														<li onclick="dataUpDate(this)">
+															<dl>
+															  <dt>&nbsp;</dt>
+															  <dd>Volume 1</dd>
+															</dl>
+														</li>
+														<li onclick="dataUpDate(this)">
+															<dl>
+															  <dt>&nbsp;</dt>
+															  <dd>Volume 2</dd>
+															</dl>
+														</li>									
+													</ul>							
+												<span class="glyphicon glyphicon-chevron-down pull-right" style="padding-top:3px;"></span>
+											</div>											
+											<div class="clickRole elasTicTabWid clonedRo">
+												<input type="text" placeholder="Ex: 192.168.1.1" style="border:none;width:100%;">
+											</div>
+											<a href="" style="margin-top: 10px;display: inline-block;"><span class="glyphicon glyphicon-minus-sign removeElastitcIP" id="addRole" style="font-size:23px;color:#999999;"></span></a>
+									</div>
+									<div style="padding:18px 59px 0px 1px;"><button class="redButton pull-right countAlign">Allocate</button></div>
+							</div>							
+							<div class="tab-pane fade alignAllsides" id="NATGateways">
+								<div class="operatingSys">
+									<div class="pull-left">
+										<label class="labelTemp">Subnet</label>
+										<div class="clickRole addStoTabWid">
+											<input type="text" placeholder="Ex: Subnet Address" style="border:none;width:100%;">
+										</div>
+									</div>
+								</div>
+								<div class="operatingSys">
+									<div class="pull-left">
+										<label class="labelTemp">EIP Allocation ID</label>
+										<div class="clickRole addStoTabWid">
+											<input type="text" placeholder="Ex: Number" style="border:none;width:100%;">
+										</div>
+									</div>
+									<div style="padding:26px 0px 0px 0px"><button class="redButton pull-left countAlign">Create</button></div>
+								</div>
+								
+							</div>				
+						</div>
+					</div>
+				</div>-->
+				<div>&nbsp;</div>
+				<h4>Count Configuration</h4>
+				<div class="countConfigBox">
+					<table style="width:100%">
+									<tr>
+										<td>
+											<table class="nodeSel enviTable">
+												<tr>
+													<th>Instance Name
+													</th>
+													<th>Image
+													</th>
+													<th>Role
+													</th>
+													<th style="width:200px;">Count
+													</th>													
+													<th>Configured</th>
+												</tr>
+												<!--<tr>
+													<td>x5clarge
+													</td>
+													<td>BITNAMI-NGINXTACK-1.6.2-
+													</td>
+													<td>Database Role
+													</td>
+													<td>
+														<div class="input-group spinner pull-left">
+															<input type="text" class="form-control" value="1">
+															<div class="input-group-btn-vertical">
+															  <button class="btn btn-default" type="button"><i class="fa glyphicon glyphicon-triangle-top
+"></i></button>
+															  <button class="btn btn-default" type="button"><i class="fa glyphicon glyphicon-triangle-bottom
+"></i></button>
+															</div>
+														</div>
+														<button class="redButton pull-left countAlign 1stRowAdd">Add</button>
+													</td>
+													<td>No</td>
+												</tr>
+												<tr class="closeConfig"><td colspan="5" style="padding: 2px 10px;"></td></tr>
+												<tr class="closeConfig">
+													<td style="padding:0px;" colspan="5">
+														<table style="width:100%;">
+															<tr>
+																<td style="padding:0px;width:250px;vertical-align: top;background-color:#FBFBFB;">
+																	<div class="col-lg-12 col-md-12 col-sm-12 content_box padZero padAllSides" id="latestUpdates">
+																		<ul id="latestUpdatesTab" class="nav nav-tabs hidden-xs">
+																			<li class="active addStoTab"><a href="#alerts" data-toggle="tab">Add Storage</a></li>
+																			<li><a href="#requests" data-toggle="tab">Security Groups</a></li>
+																			<li><a href="#svpTweet" data-toggle="tab">Key Pairs</a></li>
+																			<li class="pull-right">
+																				<button type="button" class="close redLinks closeRoleConfi" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+																			</li>
+																		</ul><div class="panel-group visible-xs" id="latestUpdatesTab-accordion"></div>
+
+																		<div class="tab-content hidden-xs">
+																			<div class="tab-pane fade  in active alignAllsides" id="alerts">
+																				<div class="operatingSys">
+																					<div class="pull-left">
+																						<label class="labelTemp">Volume Name</label>
+																						<div class="clickRole addStoTabWid">
+																							<input type="text" placeholder="Ex: Project_Name" style="border:none;width:100%;">
+																						</div>
+																					</div>
+																				</div>
+																				<div class="roleID">
+																					<div class="pull-left">
+																						<label class="labelTemp">Volume Type</label>
+																						<div class="clickRole addStoTabWid">
+																							<span class="proJetName">Select</span>
+																							<ul style="" class="dropDown">
+																								<li onclick="dataUpDate(this)">
+																									<dl>
+																									  <dt>&nbsp;</dt>
+																									  <dd>Volume 1</dd>
+																									</dl>
+																								</li>
+																								<li onclick="dataUpDate(this)">
+																									<dl>
+																									  <dt>&nbsp;</dt>
+																									  <dd>Volume 2</dd>
+																									</dl>
+																								</li>									
+																							</ul>							
+																							<span class="glyphicon glyphicon-chevron-down pull-right" style="padding-top:3px;"></span>
+																							</div>						
+																						</div>
+																					</div>
+																					<div class="operatingSys">
+																						<div class="pull-left">
+																							<label class="labelTemp">Volume Size</label>
+																							<div class="clickRole addStoTabWid">
+																								<input type="text" placeholder="Ex: Project_Name" style="border:none;width:100%;">
+																							</div>
+																						</div>
+																					</div>
+																					<div class="operatingSys">
+																						<div class="pull-left">
+																							<label class="labelTemp">IOPS</label>
+																							<div class="clickRole addStoTabWid">
+																								<input type="text" placeholder="Ex: Project_Name" style="border:none;width:100%;">
+																							</div>
+																						</div>
+																					</div>
+																					<div class="operatingSys">
+																						<div class="pull-left">
+																							<label class="labelTemp">Encryption</label>
+																							<div class="checkB addStoTabWid">
+																								<input type="checkbox" style="border:none">Yes
+																							</div>
+																						</div>
+																					</div>
+																			</div>
+																			<div style="clear:both;" class="pull-right">
+																				<button class="redButton pull-left countAlign">Save & Next</button>
+																			</div>
+																			<div class="tab-pane fade alignAllsides" id="requests">
+																				<div class="operatingSys">
+																					<div class="pull-left">
+																						<label class="labelTemp">Volume Name</label>
+																						<div class="clickRole addStoTabWid">
+																							<input type="text" placeholder="Ex: Project_Name" style="border:none;width:100%;">
+																						</div>
+																					</div>
+																				</div>
+																				<div class="roleID">
+																					<div class="pull-left">
+																						<label class="labelTemp">Volume Type</label>
+																						<div class="clickRole addStoTabWid">
+																							<span class="proJetName">Select</span>
+																							<ul style="" class="dropDown">
+																								<li onclick="dataUpDate(this)">
+																									<dl>
+																									  <dt>&nbsp;</dt>
+																									  <dd>Volume 1</dd>
+																									</dl>
+																								</li>
+																								<li onclick="dataUpDate(this)">
+																									<dl>
+																									  <dt>&nbsp;</dt>
+																									  <dd>Volume 2</dd>
+																									</dl>
+																								</li>									
+																							</ul>							
+																							<span class="glyphicon glyphicon-chevron-down pull-right" style="padding-top:3px;"></span>
+																							</div>						
+																						</div>
+																					</div>
+																					<div class="operatingSys">
+																						<div class="pull-left">
+																							<label class="labelTemp">Encryption</label>
+																							<div class="checkB addStoTabWid">
+																								<input type="checkbox" style="border:none">Yes
+																							</div>
+																						</div>
+																					</div>
+																			</div>	
+																			<div class="tab-pane fade alignAllsides" id="svpTweet">
+																				<div class="operatingSys">
+																					<div class="pull-left">
+																						<label class="labelTemp">Volume Name</label>
+																						<div class="clickRole addStoTabWid">
+																							<input type="text" placeholder="Ex: Project_Name" style="border:none;width:100%;">
+																						</div>
+																					</div>
+																				</div>
+																				<div class="roleID">
+																					<div class="pull-left">
+																						<label class="labelTemp">Volume Type</label>
+																						<div class="clickRole addStoTabWid">
+																							<span class="proJetName">Select</span>
+																							<ul style="" class="dropDown">
+																								<li onclick="dataUpDate(this)">
+																									<dl>
+																									  <dt>&nbsp;</dt>
+																									  <dd>Volume 1</dd>
+																									</dl>
+																								</li>
+																								<li onclick="dataUpDate(this)">
+																									<dl>
+																									  <dt>&nbsp;</dt>
+																									  <dd>Volume 2</dd>
+																									</dl>
+																								</li>									
+																							</ul>							
+																							<span class="glyphicon glyphicon-chevron-down pull-right" style="padding-top:3px;"></span>
+																							</div>						
+																						</div>
+																					</div>									
+																			</div>
+																		</div>
+																	</div>
+																</td>
+															</tr>
+														</table>
+													</td>
+												</tr>
+												<tr class="closeConfig"><td colspan="5" style="background-color: #fff;border-bottom: solid 1px #ccc;"></td></tr>
+												<tr>
+													<td>x5clarge
+													</td>
+													<td>BITNAMI-NGINXTACK-1.6.2-
+													</td>
+													<td>Database Role
+													</td>
+													<td>
+														<div class="input-group spinner pull-left">
+															<input type="text" class="form-control" value="1">
+															<div class="input-group-btn-vertical">
+															  <button class="btn btn-default" type="button"><i class="fa glyphicon glyphicon-triangle-top
+"></i></button>
+															  <button class="btn btn-default" type="button"><i class="fa glyphicon glyphicon-triangle-bottom
+"></i></button>
+															</div>
+														</div>
+														<button class="redButton pull-left countAlign">Add</button>
+													</td>
+													<td>No</td>
+												</tr>
+												<tr>
+													<td>x5clarge
+													</td>
+													<td>BITNAMI-NGINXTACK-1.6.2-
+													</td>
+													<td>Database Role
+													</td>
+													<td>
+														<div class="input-group spinner pull-left">
+															<input type="text" class="form-control" value="1">
+															<div class="input-group-btn-vertical">
+															  <button class="btn btn-default" type="button"><i class="fa glyphicon glyphicon-triangle-top"></i></button>
+															  <button class="btn btn-default" type="button"><i class="fa glyphicon glyphicon-triangle-bottom"></i></button>
+															</div>
+														</div>
+														<button class="redButton pull-left countAlign">Add</button>
+													</td>
+													<td>No</td>
+												</tr>-->												
+											</table>
+										</td>
+									</tr>									
+								</table>
+				</div>
+				<div style="clear:both;">&nbsp;</div>
+				<button class="redButton pull-right countAlign exit">Cancel</button>	
+				<button class="redButton pull-right countAlign" onClick="deployFunction();">Deploy</button>				
+				<div class="roles" style="background-color:#fff;padding:0px;">
+				</div>
+				<div style="clear:both;">&nbsp;</div>
+			</section>
+		</section>
+		<footer>
+			<a href="#">Home</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">Terms of use</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">Offerings</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">Blog</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">Wiki</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">Contact us</a>
+			<span style="float:right;"><img src="images_1/Social_icons.png" /></span>
+		</footer>
+	</div>
+<script src="javascript_1/deployTemp.js"></script>
+<script src="javascript_1/menu.js"></script>
+<script>
+$(document).ready(function()
+{
+  $(".nodeSel tr:odd").css("background-color", "#eee");
+});
+</script>
+</body>
+</html>

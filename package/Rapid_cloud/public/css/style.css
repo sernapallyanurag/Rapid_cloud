@@ -1,0 +1,153 @@
+
+header {
+  width: 100%;
+  height: 65px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 7999;
+  background-color: #fff;
+  -webkit-transition: height 0.3s;
+  -moz-transition: height 0.3s;
+  -ms-transition: height 0.3s;
+  -o-transition: height 0.3s;
+  transition: height 0.3s;
+  -webkit-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.61);
+-moz-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.61);
+box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.15); }
+  header h1#logo {
+    display: inline-block;
+    height: 65px;
+    float: left;
+    font-family: "Oswald", sans-serif;
+    font-size: 30px;
+    color: white;
+    font-weight: 400;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s; }
+
+
+  header.smaller {
+    height: 50px; }
+    header.smaller h1#logo {
+      width: 150px;
+      height: 50px;
+      font-size: 15px; }
+    header.smaller nav a {
+      }
+	  
+header.smaller .logo-dashboard img {width:37px ; margin:10px auto; display:block; -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;}
+header.smaller .header {height:50px; -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;}
+	
+header.smaller .color-system-dashboard {font-size:18px !important; padding-top:12px; -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;}
+	
+header.smaller .color-system {padding-top:11px; -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+header.smaller .dropdowns-left {padding:5px 10px;
+-webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;}
+header.smaller .dropdowns .dropdown {margin:0px 10px 0px 0px;
+-webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;}
+header.smaller .btn {padding:3px;
+-webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;}
+header.smaller .dropdowns .dropdown img {width:18px;
+-webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;}
+header.smaller .header-right .left {padding:5px;
+-webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;}
+header.smaller .header-right .left img {width:20px;
+-webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;}
+header.smaller .header-right .left span {padding-left:26px; font-size:11px; padding-top:3px;
+-webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;}
+header.smaller .evoke img {width:18px;
+-webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;}
+header.smaller .evoke {padding:4px 8px;
+-webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;}
+header.smaller .dropdowns .dropdown:nth-last-of-type(1) {margin:0px 0px 0px 0px;
+-webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;}
+
+/*@media all and (max-width: 660px) {
+  header h1#logo {
+    display: block;
+    float: none;
+    margin: 0 auto;
+    height: 100px;
+    line-height: 100px;
+    text-align: center; }
+  header nav {
+    display: block;
+    float: none;
+    height: 50px;
+    text-align: center;
+    margin: 0 auto; }
+    header nav a {
+      line-height: 50px;
+      margin: 0 10px; }
+  header.smaller {
+    height: 75px; }
+    header.smaller h1#logo {
+      height: 40px;
+      line-height: 40px;
+      font-size: 30px; }
+    header.smaller nav {
+      height: 35px; }
+      header.smaller nav a {
+        line-height: 35px; } }*/
+
